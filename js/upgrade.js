@@ -22,7 +22,7 @@
   const batteries = [["95-100", "95–100%"], ["90-94", "90–94%"], ["85-89", "85–89%"], ["80-84", "80–84%"], ["below80", "Abaixo de 80%"]];
   const conditions = [["excellent", "Excelente", "Sem marcas relevantes."], ["veryGood", "Muito bom", "Pequenos sinais de uso."], ["good", "Bom", "Marcas visíveis, funcionamento normal."], ["damaged", "Com marcas ou danos", "Trincas, amassados ou outros danos."]];
   const parts = [["screen", "Tela"], ["battery", "Bateria"], ["camera", "Câmera"], ["housing", "Carcaça"], ["faceId", "Face ID"], ["other", "Outros"]];
-  const storeText = (v) => v === "1024" ? "1 TB" : `${v} GB`;
+  const storeText = (v) => ({ "1024": "1 TB", "2048": "2 TB" })[v] || `${v} GB`;
   const escape = (v) => String(v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   let step = 1;
   const device = (id) => cfg.devices.find((x) => x.id === id);

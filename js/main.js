@@ -13,7 +13,7 @@
   --------------------------------------------------------- */
   const CONFIG = {
     nomeLoja: "Rocoliv Imports",
-    whatsapp: "5511988887777"
+    whatsapp: "5511959045980"
   };
 
   const formatarPreco = (valor) =>
