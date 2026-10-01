@@ -36,7 +36,7 @@ const PRODUTOS = [
     cor: "Titânio Natural",
     condicao: "novo",
     categoria: "iphone",
-    preco: 7999,
+    preco: null,
     imagem: "img/produtos/iPhone-15-Pro-Max.png"
   },
   {
@@ -46,7 +46,7 @@ const PRODUTOS = [
     cor: "Titânio Azul",
     condicao: "novo",
     categoria: "iphone",
-    preco: 6999,
+    preco: null,
     imagem: "img/produtos/iPhone-15-Pro.png"
   },
   {
@@ -56,7 +56,7 @@ const PRODUTOS = [
     cor: "Meia-noite",
     condicao: "seminovo",
     categoria: "iphone",
-    preco: 4299,
+    preco: null,
     imagem: "img/produtos/iPhone-14.png"
   },
   {
@@ -66,7 +66,7 @@ const PRODUTOS = [
     cor: "Estelar",
     condicao: "seminovo",
     categoria: "iphone",
-    preco: 3399,
+    preco: null,
     imagem: "img/produtos/iPhone-13.png"
   },
   {
@@ -76,7 +76,7 @@ const PRODUTOS = [
     cor: "Cinza Espacial",
     condicao: "novo",
     categoria: "ipad",
-    preco: 4599,
+    preco: null,
     imagem: "img/produtos/iPad-Air.png"
   },
   {
@@ -86,7 +86,7 @@ const PRODUTOS = [
     cor: "Meia-noite",
     condicao: "novo",
     categoria: "watch",
-    preco: 3899,
+    preco: null,
     imagem: "img/produtos/Apple-Watch-Series-9.png"
   },
   {
@@ -96,7 +96,7 @@ const PRODUTOS = [
     cor: "Branco",
     condicao: "novo",
     categoria: "airpods",
-    preco: 1799,
+    preco: null,
     imagem: "img/produtos/AirPods-Pro-2-Geracao.png"
   },
   {
@@ -106,7 +106,7 @@ const PRODUTOS = [
     cor: "Meia-noite",
     condicao: "seminovo",
     categoria: "macbook",
-    preco: 7499,
+    preco: null,
     imagem: "img/produtos/MacBook-Air-M2.png"
   }
 ];

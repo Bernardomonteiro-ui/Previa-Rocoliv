@@ -40,6 +40,14 @@
      ========================================================= */
   const MENSAGEM_PADRAO = `Olá! Gostaria de falar com a ${CONFIG.nomeLoja}.`;
 
+  document.addEventListener("click", (evento) => {
+    const whatsapp = evento.target.closest("[data-whatsapp], .produto-card__botao");
+    if (!whatsapp) return;
+    window.dispatchEvent(new CustomEvent("rocoliv:analytics", {
+      detail: { event: whatsapp.closest(".produto-card") ? "product_viewed" : "whatsapp_clicked" }
+    }));
+  });
+
   document.querySelectorAll("[data-whatsapp]").forEach((el) => {
     const mensagem = el.getAttribute("data-whatsapp-msg") || MENSAGEM_PADRAO;
     el.href = linkWhatsapp(mensagem);
@@ -109,9 +117,12 @@
     artigo.className = "produto-card";
     artigo.setAttribute("data-categoria", produto.categoria);
 
-    const seloClasse = produto.condicao === "novo" ? "produto-card__selo--novo" : "produto-card__selo--seminovo";
-    const seloTexto = produto.condicao === "novo" ? "Novo" : "Seminovo";
+    const seloClasse = "produto-card__selo--novo";
+    const seloTexto = "Consulte";
     const mensagem = `Olá! Tenho interesse no ${produto.nome} ${produto.capacidade} que vi no site.`;
+    const precoHtml = Number.isFinite(produto.preco)
+      ? `<span class="produto-card__preco-parcela">12x de ${formatarPreco(produto.preco / 12)}</span><span class="produto-card__preco-vista">${formatarPreco(produto.preco)} à vista no Pix</span>`
+      : `<span class="produto-card__preco-vista">Consulte disponibilidade e valor</span>`;
 
     artigo.innerHTML = `
       <div class="produto-card__imagem-wrap">
@@ -121,10 +132,7 @@
       <div class="produto-card__corpo">
         <h3 class="produto-card__nome">${produto.nome}</h3>
         <p class="produto-card__specs">${produto.capacidade} · ${produto.cor}</p>
-        <p class="produto-card__preco">
-          <span class="produto-card__preco-parcela">12x de ${formatarPreco(produto.preco / 12)}</span>
-          <span class="produto-card__preco-vista">${formatarPreco(produto.preco)} à vista no Pix</span>
-        </p>
+        <p class="produto-card__preco">${precoHtml}</p>
         <a class="produto-card__botao" target="_blank" rel="noopener" href="${linkWhatsapp(mensagem)}">
           ${iconeWhatsapp} Comprar pelo WhatsApp
         </a>
@@ -172,8 +180,8 @@
   const pistaModelos = document.getElementById("faixa-modelos-pista");
   if (pistaModelos && listaProdutos.length) {
     listaProdutos.forEach((produto) => {
-      const seloClasse = produto.condicao === "novo" ? "faixa-modelos__selo--novo" : "faixa-modelos__selo--seminovo";
-      const seloTexto = produto.condicao === "novo" ? "Novo" : "Seminovo";
+      const seloClasse = "faixa-modelos__selo--novo";
+      const seloTexto = "Consulte";
 
       const item = document.createElement("li");
       item.innerHTML = `
