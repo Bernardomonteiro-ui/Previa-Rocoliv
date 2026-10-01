@@ -1475,6 +1475,10 @@ a.contato__valor:hover { color: var(--laranja); }
 .upgrade__device span { border-color: #111; box-shadow: 0 0 0 3px #777d82; }
 .upgrade__visual { min-height: 380px; padding-bottom: 42px; }
 .upgrade__visual-label { left: 50%; right: auto; bottom: 2px; z-index: 3; width: max-content; max-width: 100%; transform: translateX(-50%); text-align: center; }
+.upgrade [hidden] { display: none !important; }
+.upgrade__button { border-radius: 100px; }
+.upgrade__choice { border-radius: 12px; }
+.upgrade__upload { border-radius: 12px; }
 .upgrade__orbit { border-color: #3a3a39; }
 .upgrade__visual-label { color: var(--branco); }
 .upgrade__welcome-bottom p,.upgrade__helper,.upgrade__result-copy,.upgrade__disclaimer { color: #bbb8b2; }
