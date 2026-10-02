@@ -33,11 +33,13 @@
      é só um valor ilustrativo animado; a seção não existe mais
      no HTML atual, só sobrou CSS órfão — decidir se volta ou se
      o CSS é removido)
-  4. [CONFIRMADO] Seção "Avaliações reais de clientes" criada com
-     4 depoimentos reais do Google (Daniela Reis, Gabriela França
-     Farias, Jean Guedes, Higor Monteiro) e nota 5,0/132 avaliações
+  4. [CONFIRMADO] Seção "Avaliações reais de clientes" (formato
+     carrossel) criada com 6 depoimentos reais do Google (Daniela
+     Reis, Gabriela França Farias, Jean Guedes, Higor Monteiro,
+     Bernardo Monteiro Cunha, Natalia Nah) e nota 5,0/132 avaliações
      real no schema (AggregateRating + Review). Se cadastrar mais
-     avaliações reais depois, adicione na seção e no JSON-LD junto.
+     avaliações reais depois, adicione na seção (index.html) e no
+     JSON-LD (array "review" do LocalBusiness) junto.
   5. Fotos reais dos produtos e da loja (hoje usamos ilustrações
      de exemplo em quase tudo, e duas fotos genéricas de still de
      produto em img/hero/ e img/destaque/)
@@ -64,6 +66,9 @@
   - Horário de atendimento . buscar por "Seg a Sáb"
   - Endereço ............... buscar por "Av. Industrial"
   - Prazo de garantia ...... buscar por "12 meses"
+  - Depoimentos ............ buscar por "depoimento-card" (e repita
+                             o mesmo texto no JSON-LD, no array
+                             "review" dentro de "LocalBusiness")
 
   IMPORTANTE sobre o WhatsApp: o número real que manda que todos
   os botões abram é a constante CONFIG.whatsapp em js/main.js —
@@ -107,9 +112,9 @@
 
 <!--
   DADOS ESTRUTURADOS (JSON-LD) — reflete só o que existe de verdade:
-  - Endereço, telefone, horário e as 4 avaliações vieram do perfil real
+  - Endereço, telefone, horário e as 6 avaliações vieram do perfil real
     do Google Business (nota 5,0, 132 avaliações). O AggregateRating/Review
-    só foi adicionado porque esses mesmos 4 depoimentos também estão
+    só foi adicionado porque esses mesmos 6 depoimentos também estão
     visíveis na seção "Avaliações reais de clientes" — é exigência do
     Google que o rich snippet reflita conteúdo visível na página.
   - Se mais avaliações do Google forem adicionadas na seção depoimentos,

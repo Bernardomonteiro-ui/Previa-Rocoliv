@@ -944,6 +944,9 @@ h1, h2, h3 {
 .faixa-modelos__selo--seminovo { background: var(--grafite-claro); color: var(--cinza-claro); border: 1px solid var(--borda); }
 
 .faixa-modelos__nome {
+  display: flex;
+  align-items: center;
+  min-height: 2.6em;
   font-size: 0.85rem;
   font-weight: 600;
   line-height: 1.3;
