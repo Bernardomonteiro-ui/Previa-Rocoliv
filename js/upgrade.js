@@ -241,13 +241,13 @@
     const old = device(d.current);
     const linhas = [
       "Olá! Gostaria de fazer uma avaliação para meu Upgrade.",
-      `📱 Aparelho: ${old.name}`,
-      `💾 Armazenamento: ${storeText(d.storage)}`,
-      `🔋 Saúde da bateria: ${d.battery}%`,
-      `✨ Estado de conservação: ${condLabel()}`,
-      `🔧 Peças substituídas: ${resumoPecas()}`
+      `Aparelho: ${old.name}`,
+      `Armazenamento: ${storeText(d.storage)}`,
+      `Saúde da bateria: ${d.battery}%`,
+      `Estado de conservação: ${condLabel()}`,
+      `Peças substituídas: ${resumoPecas()}`
     ];
-    if (d.observacoes.trim()) linhas.push("📝 Observações:", d.observacoes.trim());
+    if (d.observacoes.trim()) linhas.push("Observações:", d.observacoes.trim());
     linhas.push("");
     linhas.push(
       d.photos.length

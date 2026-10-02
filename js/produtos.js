@@ -37,7 +37,7 @@ const PRODUTOS = [
     condicao: "novo",
     categoria: "iphone",
     preco: null,
-    imagem: "img/produtos/iPhone-15-Pro-Max.png"
+    imagem: "img/produtos/iPhone-15-Pro-Max.webp"
   },
   {
     id: 2,
@@ -47,7 +47,7 @@ const PRODUTOS = [
     condicao: "novo",
     categoria: "iphone",
     preco: null,
-    imagem: "img/produtos/iPhone-15-Pro.png"
+    imagem: "img/produtos/iPhone-15-Pro.webp"
   },
   {
     id: 3,
@@ -57,7 +57,7 @@ const PRODUTOS = [
     condicao: "seminovo",
     categoria: "iphone",
     preco: null,
-    imagem: "img/produtos/iPhone-14.png"
+    imagem: "img/produtos/iPhone-14.webp"
   },
   {
     id: 4,
@@ -67,7 +67,7 @@ const PRODUTOS = [
     condicao: "seminovo",
     categoria: "iphone",
     preco: null,
-    imagem: "img/produtos/iPhone-13.png"
+    imagem: "img/produtos/iPhone-13.webp"
   },
   {
     id: 5,
@@ -77,7 +77,7 @@ const PRODUTOS = [
     condicao: "novo",
     categoria: "ipad",
     preco: null,
-    imagem: "img/produtos/iPad-Air.png"
+    imagem: "img/produtos/iPad-Air.webp"
   },
   {
     id: 6,
@@ -87,7 +87,7 @@ const PRODUTOS = [
     condicao: "novo",
     categoria: "watch",
     preco: null,
-    imagem: "img/produtos/Apple-Watch-Series-9.png"
+    imagem: "img/produtos/Apple-Watch-Series-9.webp"
   },
   {
     id: 7,
@@ -97,7 +97,7 @@ const PRODUTOS = [
     condicao: "novo",
     categoria: "airpods",
     preco: null,
-    imagem: "img/produtos/AirPods-Pro-2-Geracao.png"
+    imagem: "img/produtos/AirPods-Pro-2-Geracao.webp"
   },
   {
     id: 8,
@@ -107,6 +107,6 @@ const PRODUTOS = [
     condicao: "seminovo",
     categoria: "macbook",
     preco: null,
-    imagem: "img/produtos/MacBook-Air-M2.png"
+    imagem: "img/produtos/MacBook-Air-M2.webp"
   }
 ];

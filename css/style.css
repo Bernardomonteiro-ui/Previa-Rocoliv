@@ -1641,3 +1641,33 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   outline: 2px solid var(--laranja);
   outline-offset: 3px;
 }
+
+/* =========================================================
+   PÁGINA 404
+   ========================================================= */
+.erro-404 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--preto);
+  padding: 48px 0;
+}
+.erro-404__conteudo { max-width: 560px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.erro-404__logo { display: inline-flex; margin-bottom: 40px; }
+.erro-404__logo img { height: 52px; width: auto; }
+.erro-404__codigo {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  background: var(--gradiente-laranja);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+.erro-404__titulo { font-size: clamp(1.4rem, 4vw, 2rem); letter-spacing: -0.02em; margin-bottom: 16px; }
+.erro-404__texto { color: var(--cinza-claro); font-size: 0.95rem; line-height: 1.6; margin-bottom: 32px; }
+.erro-404__acoes { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Site de página única: existe apenas uma URL pública para indexar.
+  Troque "https://rocolivimports.com.br/" pelo domínio real antes de publicar
+  (mesmo endereço de exemplo usado no canonical e no Open Graph do index.html).
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://rocolivimports.com.br/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

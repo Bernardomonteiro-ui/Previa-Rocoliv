@@ -3,9 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rocoliv Imports — Especialistas em Apple | iPhones, iPads, MacBooks originais</title>
-<meta name="description" content="Especialistas em Apple. Encontre seu próximo iPhone e descubra como usar seu aparelho atual na troca com a Rocoliv Imports.">
+<title>iPhone Novo e Seminovo em São Paulo | Rocoliv Imports</title>
+<meta name="description" content="iPhones novos e seminovos com garantia em São Paulo. Dê seu iPhone atual como parte do pagamento e fale direto com a Rocoliv Imports pelo WhatsApp.">
 <meta name="theme-color" content="#000000">
+
+<!--
+  SEO — TROCAR PELO DOMÍNIO REAL ANTES DE PUBLICAR:
+  O endereço https://rocolivimports.com.br usado abaixo (canonical,
+  Open Graph, sitemap.xml, dados estruturados) é um EXEMPLO. Troque
+  por Ctrl+F em todos os arquivos (index.html, sitemap.xml, robots.txt)
+  assim que o domínio definitivo estiver registrado.
+-->
+<link rel="canonical" href="https://rocolivimports.com.br/">
 
 <!--
   ===========================================================
@@ -58,6 +67,7 @@
 
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="apple-touch-icon" href="img/favicon.png">
+<link rel="manifest" href="manifest.json">
 
 <!--
   Open Graph (a "prévia" que aparece quando você cola o link no
@@ -69,22 +79,154 @@
 -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Rocoliv Imports">
-<meta property="og:title" content="Rocoliv Imports — Especialistas em Apple">
-<meta property="og:description" content="Especialistas em Apple. Encontre seu próximo iPhone e descubra como usar seu aparelho atual na troca com a Rocoliv Imports.">
+<meta property="og:title" content="iPhone Novo e Seminovo em São Paulo | Rocoliv Imports">
+<meta property="og:description" content="iPhones novos e seminovos com garantia em São Paulo. Dê seu iPhone atual como parte do pagamento e fale direto com a Rocoliv Imports pelo WhatsApp.">
 <meta property="og:image" content="img/og-imagem.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:url" content="https://rocolivimports.com.br/">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 
 <!-- Twitter Card -->
-<meta name="twitter:title" content="Rocoliv Imports — Especialistas em Apple">
-<meta name="twitter:description" content="Especialistas em Apple. Descubra quanto pode faltar para trocar seu iPhone atual.">
+<meta name="twitter:title" content="iPhone Novo e Seminovo em São Paulo | Rocoliv Imports">
+<meta name="twitter:description" content="iPhones novos e seminovos com garantia em São Paulo. Dê seu iPhone atual como parte do pagamento pelo WhatsApp.">
 <meta name="twitter:image" content="img/og-imagem.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!--
+  DADOS ESTRUTURADOS (JSON-LD) — reflete só o que existe de verdade
+  no site. Nenhum preço, avaliação ou endereço completo foi inventado:
+  - Não há rua/número cadastrados no projeto. Se quiser aparecer no
+    Google Maps/pacote local, adicione "streetAddress" e "postalCode"
+    dentro de "address" assim que tiver esse dado.
+  - Produtos não têm Product/Offer schema porque os preços em
+    js/produtos.js ainda estão todos como "null" (fictícios de prévia).
+    Quando os preços reais forem cadastrados, isso pode ser adicionado.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://rocolivimports.com.br/#organizacao",
+      "name": "Rocoliv Imports",
+      "url": "https://rocolivimports.com.br/",
+      "logo": "https://rocolivimports.com.br/img/logo-rocoliv.png",
+      "sameAs": ["https://instagram.com/rocolivimports"]
+    },
+    {
+      "@type": ["LocalBusiness", "ElectronicsStore"],
+      "@id": "https://rocolivimports.com.br/#loja",
+      "name": "Rocoliv Imports",
+      "image": "https://rocolivimports.com.br/img/og-imagem.jpg",
+      "url": "https://rocolivimports.com.br/",
+      "telephone": "+5511959045980",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "São Paulo",
+        "addressRegion": "SP",
+        "addressCountry": "BR"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "09:00",
+        "closes": "19:00"
+      },
+      "sameAs": ["https://instagram.com/rocolivimports"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://rocolivimports.com.br/#site",
+      "name": "Rocoliv Imports",
+      "url": "https://rocolivimports.com.br/",
+      "inLanguage": "pt-BR",
+      "publisher": { "@id": "https://rocolivimports.com.br/#organizacao" }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://rocolivimports.com.br/#upgrade",
+      "name": "Avaliação de iPhone usado para troca (Upgrade)",
+      "serviceType": "Avaliação de dispositivo usado para troca",
+      "provider": { "@id": "https://rocolivimports.com.br/#organizacao" },
+      "areaServed": {
+        "@type": "City",
+        "name": "São Paulo"
+      },
+      "description": "O cliente informa modelo, armazenamento, bateria, estado de conservação e envia fotos do iPhone atual pelo site. A equipe da Rocoliv Imports analisa manualmente e responde pelo WhatsApp com o valor do upgrade.",
+      "url": "https://rocolivimports.com.br/#upgrade"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://rocolivimports.com.br/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Os produtos são originais?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A equipe pode informar a procedência e os detalhes do produto disponível antes de você fechar o pedido."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona a garantia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O prazo e as condições dependem do produto. A equipe confirma os detalhes antes da compra."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona a entrega?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Consulte a equipe sobre disponibilidade, prazo e opções de entrega para sua região."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quais formas de pagamento vocês aceitam?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As opções disponíveis são confirmadas pela equipe durante o atendimento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vocês aceitam usado na troca?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Informe os detalhes do aparelho pelo configurador; a equipe verifica as possibilidades e confirma a avaliação."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como é definido o valor do meu upgrade?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O site não calcula nem mostra nenhum valor. Depois que você envia os dados do aparelho (e as fotos, pelo WhatsApp), a nossa equipe analisa tudo manualmente e responde com o valor do seu upgrade."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como envio as fotos do meu iPhone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Você pode selecionar fotos no configurador para ver as prévias. Depois de abrir o WhatsApp, envie as imagens diretamente na conversa."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -104,7 +246,10 @@
 <header class="cabecalho" id="cabecalho">
   <div class="cabecalho__conteudo container">
     <a href="#topo" class="cabecalho__logo">
-      <img src="img/logo-rocoliv.png" alt="Rocoliv Imports" class="cabecalho__logo-imagem" width="1495" height="1052">
+      <picture>
+        <source srcset="img/logo-rocoliv.webp" type="image/webp">
+        <img src="img/logo-rocoliv.png" alt="Rocoliv Imports" class="cabecalho__logo-imagem" width="1495" height="1052">
+      </picture>
     </a>
 
     <nav class="menu" id="menu">
@@ -145,7 +290,10 @@
     </div>
 
     <div class="hero__painel">
-      <img src="img/hero/Imagem_Celular_Apple.png" alt="Detalhe do sistema de câmeras do iPhone" class="hero__painel-imagem" width="1672" height="941" fetchpriority="high">
+      <picture>
+        <source srcset="img/hero/Imagem_Celular_Apple.webp" type="image/webp">
+        <img src="img/hero/Imagem_Celular_Apple.png" alt="Detalhe do sistema de câmeras do iPhone" class="hero__painel-imagem" width="1672" height="941" fetchpriority="high">
+      </picture>
     </div>
   </section>
 
@@ -335,11 +483,11 @@
 
       <div class="explorar__grade">
         <div class="explorar__midia">
-          <img id="explorar-imagem" src="img/detalhes/caixa_iphone.png" alt="" class="explorar__imagem" loading="lazy" width="1254" height="1254">
+          <img id="explorar-imagem" src="img/detalhes/caixa_iphone.webp" alt="Caixa original de iPhone com acessórios" class="explorar__imagem" loading="lazy" width="1254" height="1254">
         </div>
 
         <div class="explorar__lista">
-          <div class="explorar__item is-ativo" data-explorar-item data-imagem="img/detalhes/caixa_iphone.png">
+          <div class="explorar__item is-ativo" data-explorar-item data-imagem="img/detalhes/caixa_iphone.webp" data-imagem-alt="Caixa original de iPhone com acessórios">
             <button class="explorar__pilula" type="button" data-explorar-botao>
               <span>Procedência</span>
               <span class="explorar__mais" aria-hidden="true"></span>
@@ -349,7 +497,7 @@
             </div>
           </div>
 
-          <div class="explorar__item" data-explorar-item data-imagem="img/detalhes/Bateria_iphone.png">
+          <div class="explorar__item" data-explorar-item data-imagem="img/detalhes/Bateria_iphone.webp" data-imagem-alt="Tela de saúde da bateria de um iPhone seminovo">
             <button class="explorar__pilula" type="button" data-explorar-botao>
               <span>Saúde da bateria nos seminovos</span>
               <span class="explorar__mais" aria-hidden="true"></span>
@@ -359,7 +507,7 @@
             </div>
           </div>
 
-          <div class="explorar__item" data-explorar-item data-imagem="img/detalhes/garantia_apple.png">
+          <div class="explorar__item" data-explorar-item data-imagem="img/detalhes/garantia_apple.webp" data-imagem-alt="Selo de garantia Apple">
             <button class="explorar__pilula" type="button" data-explorar-botao>
               <span>Garantia</span>
               <span class="explorar__mais" aria-hidden="true"></span>
@@ -369,7 +517,7 @@
             </div>
           </div>
 
-          <div class="explorar__item" data-explorar-item data-imagem="img/detalhes/carregador_apple.png">
+          <div class="explorar__item" data-explorar-item data-imagem="img/detalhes/carregador_apple.webp" data-imagem-alt="Cabo e carregador originais que acompanham o aparelho">
             <button class="explorar__pilula" type="button" data-explorar-botao>
               <span>O que vem na caixa</span>
               <span class="explorar__mais" aria-hidden="true"></span>
@@ -390,7 +538,10 @@
 
       <div class="destaque__container">
         <div class="destaque__midia">
-          <img src="img/destaque/Fone_apple.png" alt="AirPods saindo do estojo" class="destaque__imagem" loading="lazy" width="1254" height="1254">
+          <picture>
+            <source srcset="img/destaque/Fone_apple.webp" type="image/webp">
+            <img src="img/destaque/Fone_apple.png" alt="AirPods saindo do estojo" class="destaque__imagem" loading="lazy" width="1254" height="1254">
+          </picture>
         </div>
 
         <div class="destaque__textos">
@@ -545,7 +696,10 @@
 <!-- ===================== RODAPÉ ===================== -->
 <footer class="rodape">
   <div class="container rodape__conteudo">
-    <img src="img/logo-rocoliv.png" alt="Rocoliv Imports" class="rodape__logo-imagem" width="1495" height="1052">
+    <picture>
+      <source srcset="img/logo-rocoliv.webp" type="image/webp">
+      <img src="img/logo-rocoliv.png" alt="Rocoliv Imports" class="rodape__logo-imagem" width="1495" height="1052">
+    </picture>
     <p class="rodape__copy">&copy; <span id="ano-atual">2026</span> Rocoliv Imports. Todos os direitos reservados.</p>
     <p class="rodape__aviso">O valor do upgrade é sempre definido pela nossa equipe, por WhatsApp, depois da avaliação do aparelho.</p>
   </div>

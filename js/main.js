@@ -392,7 +392,7 @@
       texto.style.maxHeight = i === 0 ? `${texto.scrollHeight}px` : "0px";
     });
 
-    function trocarImagem(novaImagem) {
+    function trocarImagem(novaImagem, novoAlt) {
       if (!novaImagem || imagem.getAttribute("src") === novaImagem) return;
 
       if (window.gsap && !prefereMovimentoReduzido) {
@@ -402,6 +402,7 @@
           ease: "power2.in",
           onComplete: () => {
             imagem.src = novaImagem;
+            if (novoAlt) imagem.alt = novoAlt;
             gsap.fromTo(
               imagem,
               { opacity: 0, y: 25 },
@@ -416,6 +417,7 @@
         imagem.classList.add("esta-trocando");
         setTimeout(() => {
           imagem.src = novaImagem;
+          if (novoAlt) imagem.alt = novoAlt;
           imagem.classList.remove("esta-trocando");
         }, prefereMovimentoReduzido ? 0 : 220);
       }
@@ -438,7 +440,7 @@
         item.classList.add("is-ativo");
         texto.style.maxHeight = `${texto.scrollHeight}px`;
 
-        trocarImagem(item.getAttribute("data-imagem"));
+        trocarImagem(item.getAttribute("data-imagem"), item.getAttribute("data-imagem-alt"));
       });
     });
   })();
