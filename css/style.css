@@ -876,6 +876,11 @@ h1, h2, h3 {
   scrollbar-width: none;
   padding: 4px 20px 8px;
   flex: 1;
+  /* Quando todos os modelos cabem na tela, centraliza a fileira em
+     vez de deixar um vazio à direita. "safe" garante que, se não
+     couber tudo, volta a alinhar pela esquerda (rolável) em vez de
+     cortar o primeiro item. */
+  justify-content: safe center;
 }
 .faixa-modelos__pista::-webkit-scrollbar { display: none; }
 
