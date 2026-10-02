@@ -182,6 +182,18 @@
           "author": { "@type": "Person", "name": "Higor Monteiro" },
           "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
           "reviewBody": "O Robson e a Vivi sempre me atenderam super bem. Comprei mais de 3 produtos Apple com eles e sempre com atendimento excepcional, uma entrega premium e um preço acessível."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Bernardo Monteiro Cunha" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "Atendimento exclusivo, atendente educado, melhor experiência possível. Não cheguei a cotar com outras lojas, mas o valor é acessível e dentro dos padrões pesquisados do Google! Recomendo muito."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Natalia Nah" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "Na qualidade de Advogada, antes de comprar qualquer produto, eu sempre analiso e faço minhas pesquisas jurídicas. Recebi várias indicações até ter a certeza que fecharia com o Robson e equipe, que, frente a todos os que procurei, foi a loja que mais me transmitiu segurança e confiabilidade. Agradeço pelo atendimento humanizado, um ambiente aconchegando e acolhedor."
         }
       ]
     },
@@ -634,8 +646,10 @@
         <h2 class="titulo-secao__titulo">Avaliações reais de clientes</h2>
         <p class="depoimentos__nota"><span aria-hidden="true">★★★★★</span> 5,0 · 132 avaliações no Google</p>
       </div>
+    </div>
 
-      <ul class="depoimentos__grade">
+    <div class="carrossel__viewport" id="depoimentos-viewport">
+      <ul class="carrossel__pista" id="depoimentos-pista">
         <li class="depoimento-card">
           <p class="depoimento-card__estrelas" aria-hidden="true">★★★★★</p>
           <p class="depoimento-card__texto">"Comprei um iPhone 16 numa outra loja, e me arrependi de não ter comprado o 17 Pro Max. Fiz uns 10 orçamentos para fazer um Upgrade e a Rocoliv não foi o mais barato, mas foi de longe o melhor atendimento desde o primeiro contato. Qualidade no atendimento fez toda a diferença, e hoje estou feliz com meu 17 Pro Max."</p>
@@ -683,7 +697,41 @@
             </div>
           </div>
         </li>
+
+        <li class="depoimento-card">
+          <p class="depoimento-card__estrelas" aria-hidden="true">★★★★★</p>
+          <p class="depoimento-card__texto">"Atendimento exclusivo, atendente educado, melhor experiência possível. Não cheguei a cotar com outras lojas, mas o valor é acessível e dentro dos padrões pesquisados do Google! Recomendo muito."</p>
+          <div class="depoimento-card__autor">
+            <span class="depoimento-card__avatar" aria-hidden="true">BC</span>
+            <div>
+              <p class="depoimento-card__nome">Bernardo Monteiro Cunha</p>
+              <p class="depoimento-card__cidade">Avaliação no Google</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="depoimento-card">
+          <p class="depoimento-card__estrelas" aria-hidden="true">★★★★★</p>
+          <p class="depoimento-card__texto">"Na qualidade de Advogada, antes de comprar qualquer produto, eu sempre analiso e faço minhas pesquisas jurídicas. Recebi várias indicações até ter a certeza que fecharia com o Robson e equipe, que, frente a todos os que procurei, foi a loja que mais me transmitiu segurança e confiabilidade. Agradeço pelo atendimento humanizado, um ambiente aconchegando e acolhedor."</p>
+          <div class="depoimento-card__autor">
+            <span class="depoimento-card__avatar" aria-hidden="true">NN</span>
+            <div>
+              <p class="depoimento-card__nome">Natalia Nah</p>
+              <p class="depoimento-card__cidade">Avaliação no Google · 3 meses atrás</p>
+            </div>
+          </div>
+        </li>
       </ul>
+    </div>
+
+    <div class="container">
+      <div class="carrossel__controles">
+        <button class="carrossel__pausa" id="depoimentos-pausa" type="button" aria-pressed="false" aria-label="Pausar apresentação automática">
+          <svg class="icone-pausar" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+          <svg class="icone-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5-13-7.5Z"/></svg>
+        </button>
+        <div class="carrossel__indicadores" id="depoimentos-indicadores"></div>
+      </div>
     </div>
   </section>
 

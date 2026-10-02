@@ -274,16 +274,17 @@
   }
 
   /* =========================================================
-     6.1 CARROSSEL "COMECE PELOS DESTAQUES"
+     6.1 CARROSSEL (reutilizável — "Comece pelos destaques" e
+     "Avaliações reais de clientes" usam o mesmo controlador)
      Funciona sem depender do GSAP. Usa rolagem nativa (scroll-snap)
      para o arraste no celular — mais leve e confiável que arraste
      customizado por JavaScript.
      ========================================================= */
-  (function iniciarCarrossel() {
-    const viewport = document.getElementById("carrossel-viewport");
-    const pista = document.getElementById("carrossel-pista");
-    const indicadoresWrap = document.getElementById("carrossel-indicadores");
-    const botaoPausa = document.getElementById("carrossel-pausa");
+  function iniciarCarrossel(idViewport, idPista, idIndicadores, idPausa, rotuloItem) {
+    const viewport = document.getElementById(idViewport);
+    const pista = document.getElementById(idPista);
+    const indicadoresWrap = document.getElementById(idIndicadores);
+    const botaoPausa = document.getElementById(idPausa);
     if (!viewport || !pista) return;
 
     const slides = Array.from(pista.children);
@@ -304,7 +305,7 @@
       const ponto = document.createElement("button");
       ponto.type = "button";
       ponto.className = "carrossel__ponto";
-      ponto.setAttribute("aria-label", `Ir para o destaque ${i + 1} de ${slides.length}`);
+      ponto.setAttribute("aria-label", `Ir para ${rotuloItem} ${i + 1} de ${slides.length}`);
       ponto.addEventListener("click", () => {
         irPara(i);
         reiniciarAutoplay();
@@ -375,7 +376,10 @@
 
     atualizarIndicadores();
     iniciarAutoplay();
-  })();
+  }
+
+  iniciarCarrossel("carrossel-viewport", "carrossel-pista", "carrossel-indicadores", "carrossel-pausa", "o destaque");
+  iniciarCarrossel("depoimentos-viewport", "depoimentos-pista", "depoimentos-indicadores", "depoimentos-pausa", "o depoimento");
 
   /* =========================================================
      6.2 EXPLORE OS DETALHES — pílulas que expandem um texto e
@@ -593,7 +597,7 @@
       revelarEmCascata(".categorias", ".categoria-btn");
       revelarEmCascata(".explorar__lista", ".explorar__item");
       revelarEmCascata(".passos", ".passo-card");
-      revelarEmCascata(".depoimentos__grade", ".depoimento-card");
+      revelarEmCascata("#depoimentos-pista", ".depoimento-card");
       revelarEmCascata(".numeros__lista", ".numeros__item");
       revelarEmCascata(".faq", ".faq-item");
 
