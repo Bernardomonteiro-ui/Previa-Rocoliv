@@ -1408,6 +1408,13 @@ h1, h2, h3 {
    ========================================================= */
 .depoimentos { background: var(--preto); }
 
+.depoimentos__nota {
+  margin-top: 14px;
+  color: var(--cinza-claro);
+  font-size: 0.9rem;
+}
+.depoimentos__nota span { color: var(--laranja); letter-spacing: 2px; }
+
 .depoimentos__grade {
   display: grid;
   grid-template-columns: 1fr;

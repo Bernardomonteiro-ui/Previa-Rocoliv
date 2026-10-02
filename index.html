@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>iPhone Novo e Seminovo em São Paulo | Rocoliv Imports</title>
-<meta name="description" content="iPhones novos e seminovos com garantia em São Paulo. Dê seu iPhone atual como parte do pagamento e fale direto com a Rocoliv Imports pelo WhatsApp.">
+<title>iPhone Novo e Seminovo em Santo André | Rocoliv Imports</title>
+<meta name="description" content="iPhones novos e seminovos com garantia em Santo André, Grande São Paulo. Dê seu iPhone atual na troca e fale com a Rocoliv Imports pelo WhatsApp.">
 <meta name="theme-color" content="#000000">
 
 <!--
@@ -24,14 +24,20 @@
   EXEMPLO e precisam ser confirmados/trocados com o cliente antes
   de qualquer envio real:
 
-  1. Número de WhatsApp do vendedor: 5511959045980
+  1. [CONFIRMADO] Número de WhatsApp do vendedor: 5511959045980
+     (bate com o telefone do perfil real do Google Business)
   2. Prazo de garantia real (hoje: 12 meses, aparece em vários
      lugares: faixa de confiança, seção "Explore os detalhes",
      FAQ e rodapé)
   3. Número de clientes atendidos (seção "Números" — hoje 3200,
-     é só um valor ilustrativo animado)
-  4. Depoimentos (nomes, cidades e textos da seção "Quem comprou,
-     recomenda" são fictícios)
+     é só um valor ilustrativo animado; a seção não existe mais
+     no HTML atual, só sobrou CSS órfão — decidir se volta ou se
+     o CSS é removido)
+  4. [CONFIRMADO] Seção "Avaliações reais de clientes" criada com
+     4 depoimentos reais do Google (Daniela Reis, Gabriela França
+     Farias, Jean Guedes, Higor Monteiro) e nota 5,0/132 avaliações
+     real no schema (AggregateRating + Review). Se cadastrar mais
+     avaliações reais depois, adicione na seção e no JSON-LD junto.
   5. Fotos reais dos produtos e da loja (hoje usamos ilustrações
      de exemplo em quase tudo, e duas fotos genéricas de still de
      produto em img/hero/ e img/destaque/)
@@ -39,7 +45,9 @@
   7. Percentual de desconto no Pix e condição de parcelamento
      (hoje: até 12x, 5% no Pix — aparecem na faixa do topo, no
      carrossel e no FAQ de pagamento)
-  8. Instagram, horário de atendimento e cidade (seção de contato)
+  8. [CONFIRMADO] Endereço completo e horário batem com o perfil
+     real do Google Business (Santo André - SP). Falta confirmar
+     só o Instagram (@rocolivimports).
   ===========================================================
 -->
 
@@ -54,7 +62,7 @@
   - Número do WhatsApp ..... CONFIG.whatsapp em js/main.js e js/upgrade-data.js
   - Instagram .............. buscar por "@rocolivimports"
   - Horário de atendimento . buscar por "Seg a Sáb"
-  - Cidade ................. buscar por "São Paulo - SP"
+  - Endereço ............... buscar por "Av. Industrial"
   - Prazo de garantia ...... buscar por "12 meses"
 
   IMPORTANTE sobre o WhatsApp: o número real que manda que todos
@@ -79,8 +87,8 @@
 -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Rocoliv Imports">
-<meta property="og:title" content="iPhone Novo e Seminovo em São Paulo | Rocoliv Imports">
-<meta property="og:description" content="iPhones novos e seminovos com garantia em São Paulo. Dê seu iPhone atual como parte do pagamento e fale direto com a Rocoliv Imports pelo WhatsApp.">
+<meta property="og:title" content="iPhone Novo e Seminovo em Santo André | Rocoliv Imports">
+<meta property="og:description" content="iPhones novos e seminovos com garantia em Santo André, Grande São Paulo. Dê seu iPhone atual na troca e fale com a Rocoliv Imports pelo WhatsApp.">
 <meta property="og:image" content="img/og-imagem.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -89,8 +97,8 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <!-- Twitter Card -->
-<meta name="twitter:title" content="iPhone Novo e Seminovo em São Paulo | Rocoliv Imports">
-<meta name="twitter:description" content="iPhones novos e seminovos com garantia em São Paulo. Dê seu iPhone atual como parte do pagamento pelo WhatsApp.">
+<meta name="twitter:title" content="iPhone Novo e Seminovo em Santo André | Rocoliv Imports">
+<meta name="twitter:description" content="iPhones novos e seminovos com garantia em Santo André, Grande São Paulo. Dê seu iPhone atual na troca pelo WhatsApp.">
 <meta name="twitter:image" content="img/og-imagem.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,11 +106,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <!--
-  DADOS ESTRUTURADOS (JSON-LD) — reflete só o que existe de verdade
-  no site. Nenhum preço, avaliação ou endereço completo foi inventado:
-  - Não há rua/número cadastrados no projeto. Se quiser aparecer no
-    Google Maps/pacote local, adicione "streetAddress" e "postalCode"
-    dentro de "address" assim que tiver esse dado.
+  DADOS ESTRUTURADOS (JSON-LD) — reflete só o que existe de verdade:
+  - Endereço, telefone, horário e as 4 avaliações vieram do perfil real
+    do Google Business (nota 5,0, 132 avaliações). O AggregateRating/Review
+    só foi adicionado porque esses mesmos 4 depoimentos também estão
+    visíveis na seção "Avaliações reais de clientes" — é exigência do
+    Google que o rich snippet reflita conteúdo visível na página.
+  - Se mais avaliações do Google forem adicionadas na seção depoimentos,
+    adicione o Review correspondente aqui também (mesmo texto/nome).
   - Produtos não têm Product/Offer schema porque os preços em
     js/produtos.js ainda estão todos como "null" (fictícios de prévia).
     Quando os preços reais forem cadastrados, isso pode ser adicionado.
@@ -129,8 +140,10 @@
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "São Paulo",
+        "streetAddress": "Av. Industrial, 780 - Sl 509 - Jardim",
+        "addressLocality": "Santo André",
         "addressRegion": "SP",
+        "postalCode": "09080-500",
         "addressCountry": "BR"
       },
       "openingHoursSpecification": {
@@ -139,7 +152,38 @@
         "opens": "09:00",
         "closes": "19:00"
       },
-      "sameAs": ["https://instagram.com/rocolivimports"]
+      "sameAs": ["https://instagram.com/rocolivimports"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "132"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Daniela Reis" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "Comprei um iPhone 16 numa outra loja, e me arrependi de não ter comprado o 17 Pro Max. Fiz uns 10 orçamentos para fazer um Upgrade e a Rocoliv não foi o mais barato, mas foi de longe o melhor atendimento desde o primeiro contato. Qualidade no atendimento fez toda a diferença, e hoje estou feliz com meu 17 Pro Max."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Gabriela França Farias" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "Pessoas responsáveis, atendimento ao cliente muito bom. Já comprei umas três vezes e conheço outras pessoas que compraram e gostaram muito. Recomendo de olhos fechados. Loja nota 10."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Jean Guedes" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "A melhor loja de todas, tive suporte do começo ao fim. Já comprei mais de 8 celulares com eles, do meu iPhone 11 ao meu 17, fora o celular da minha esposa e das minhas filhas. Uma loja que indico para todos os meus colegas e amigos."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Higor Monteiro" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "O Robson e a Vivi sempre me atenderam super bem. Comprei mais de 3 produtos Apple com eles e sempre com atendimento excepcional, uma entrega premium e um preço acessível."
+        }
+      ]
     },
     {
       "@type": "WebSite",
@@ -157,7 +201,7 @@
       "provider": { "@id": "https://rocolivimports.com.br/#organizacao" },
       "areaServed": {
         "@type": "City",
-        "name": "São Paulo"
+        "name": "Santo André"
       },
       "description": "O cliente informa modelo, armazenamento, bateria, estado de conservação e envia fotos do iPhone atual pelo site. A equipe da Rocoliv Imports analisa manualmente e responde pelo WhatsApp com o valor do upgrade.",
       "url": "https://rocolivimports.com.br/#upgrade"
@@ -582,6 +626,67 @@
     </div>
   </section>
 
+  <!-- ===================== DEPOIMENTOS ===================== -->
+  <section class="depoimentos" id="depoimentos">
+    <div class="container">
+      <div class="titulo-secao">
+        <p class="titulo-secao__selo">Quem comprou, recomenda</p>
+        <h2 class="titulo-secao__titulo">Avaliações reais de clientes</h2>
+        <p class="depoimentos__nota"><span aria-hidden="true">★★★★★</span> 5,0 · 132 avaliações no Google</p>
+      </div>
+
+      <ul class="depoimentos__grade">
+        <li class="depoimento-card">
+          <p class="depoimento-card__estrelas" aria-hidden="true">★★★★★</p>
+          <p class="depoimento-card__texto">"Comprei um iPhone 16 numa outra loja, e me arrependi de não ter comprado o 17 Pro Max. Fiz uns 10 orçamentos para fazer um Upgrade e a Rocoliv não foi o mais barato, mas foi de longe o melhor atendimento desde o primeiro contato. Qualidade no atendimento fez toda a diferença, e hoje estou feliz com meu 17 Pro Max."</p>
+          <div class="depoimento-card__autor">
+            <span class="depoimento-card__avatar" aria-hidden="true">DR</span>
+            <div>
+              <p class="depoimento-card__nome">Daniela Reis</p>
+              <p class="depoimento-card__cidade">Avaliação no Google · 7 meses atrás</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="depoimento-card">
+          <p class="depoimento-card__estrelas" aria-hidden="true">★★★★★</p>
+          <p class="depoimento-card__texto">"Pessoas responsáveis, atendimento ao cliente muito bom. Já comprei umas três vezes e conheço outras pessoas que compraram e gostaram muito. Recomendo de olhos fechados. Loja nota 10."</p>
+          <div class="depoimento-card__autor">
+            <span class="depoimento-card__avatar" aria-hidden="true">GF</span>
+            <div>
+              <p class="depoimento-card__nome">Gabriela França Farias</p>
+              <p class="depoimento-card__cidade">Avaliação no Google · 3 meses atrás</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="depoimento-card">
+          <p class="depoimento-card__estrelas" aria-hidden="true">★★★★★</p>
+          <p class="depoimento-card__texto">"A melhor loja de todas, tive suporte do começo ao fim. Já comprei mais de 8 celulares com eles, do meu iPhone 11 ao meu 17, fora o celular da minha esposa e das minhas filhas. Uma loja que indico para todos os meus colegas e amigos."</p>
+          <div class="depoimento-card__autor">
+            <span class="depoimento-card__avatar" aria-hidden="true">JG</span>
+            <div>
+              <p class="depoimento-card__nome">Jean Guedes</p>
+              <p class="depoimento-card__cidade">Avaliação no Google · 3 meses atrás</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="depoimento-card">
+          <p class="depoimento-card__estrelas" aria-hidden="true">★★★★★</p>
+          <p class="depoimento-card__texto">"O Robson e a Vivi sempre me atenderam super bem. Comprei mais de 3 produtos Apple com eles e sempre com atendimento excepcional, uma entrega premium e um preço acessível."</p>
+          <div class="depoimento-card__autor">
+            <span class="depoimento-card__avatar" aria-hidden="true">HM</span>
+            <div>
+              <p class="depoimento-card__nome">Higor Monteiro</p>
+              <p class="depoimento-card__cidade">Avaliação no Google · 3 meses atrás</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <!-- ===================== FAQ ===================== -->
   <section class="duvidas" id="duvidas">
     <div class="container">
@@ -684,8 +789,8 @@
           <span class="contato__valor">Seg a Sáb, das 9h às 19h</span>
         </li>
         <li class="contato__item">
-          <span class="contato__rotulo">Cidade</span>
-          <span class="contato__valor">São Paulo - SP</span>
+          <span class="contato__rotulo">Endereço</span>
+          <span class="contato__valor">Av. Industrial, 780 - Sl 509 - Jardim, Santo André - SP</span>
         </li>
       </ul>
     </div>
