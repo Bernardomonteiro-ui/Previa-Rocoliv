@@ -173,43 +173,6 @@
   });
 
   /* =========================================================
-     5.1 FAIXA DE MODELOS — miniaturas horizontais puxadas dos
-     mesmos dados de js/produtos.js. Clicar num modelo filtra o
-     catálogo abaixo pela categoria dele e rola até lá.
-     ========================================================= */
-  const pistaModelos = document.getElementById("faixa-modelos-pista");
-  if (pistaModelos && listaProdutos.length) {
-    listaProdutos.forEach((produto) => {
-      const seloClasse = "faixa-modelos__selo--novo";
-      const seloTexto = "Consulte";
-
-      const item = document.createElement("li");
-      item.innerHTML = `
-        <button class="faixa-modelos__item" type="button" data-categoria="${produto.categoria}">
-          <span class="faixa-modelos__imagem-wrap">
-            <span class="faixa-modelos__selo ${seloClasse}">${seloTexto}</span>
-            <img class="faixa-modelos__imagem" src="${produto.imagem}" alt="" loading="lazy" width="800" height="800">
-          </span>
-          <span class="faixa-modelos__nome">${produto.nome}</span>
-        </button>
-      `;
-      pistaModelos.appendChild(item);
-    });
-
-    pistaModelos.querySelectorAll("[data-categoria]").forEach((botao) => {
-      botao.addEventListener("click", () => {
-        filtrarCatalogoPor(botao.getAttribute("data-categoria"));
-        document.getElementById("produtos").scrollIntoView({ behavior: prefereMovimentoReduzido ? "auto" : "smooth", block: "start" });
-      });
-    });
-
-    const setaEsq = document.querySelector(".faixa-modelos__seta--esq");
-    const setaDir = document.querySelector(".faixa-modelos__seta--dir");
-    if (setaEsq) setaEsq.addEventListener("click", () => pistaModelos.scrollBy({ left: -320, behavior: "smooth" }));
-    if (setaDir) setaDir.addEventListener("click", () => pistaModelos.scrollBy({ left: 320, behavior: "smooth" }));
-  }
-
-  /* =========================================================
      6. FAQ — fecha as outras perguntas ao abrir uma nova
      ========================================================= */
   const itensFaq = document.querySelectorAll("[data-faq-item]");
@@ -301,26 +264,61 @@
     let pausado = false;
     let temporizador = null;
 
-    slides.forEach((_, i) => {
-      const ponto = document.createElement("button");
-      ponto.type = "button";
-      ponto.className = "carrossel__ponto";
-      ponto.setAttribute("aria-label", `Ir para ${rotuloItem} ${i + 1} de ${slides.length}`);
-      ponto.addEventListener("click", () => {
-        irPara(i);
-        reiniciarAutoplay();
-      });
-      indicadoresWrap.appendChild(ponto);
+    /* Garante espaço suficiente nas pontas da pista para que o
+       primeiro e o último item também consigam ficar centralizados
+       (calculado em pixels reais — tentar isso só com % / vw no CSS
+       não fecha a conta por causa do padding/gap acumulados). */
+    function ajustarFolgaCentralizacao() {
+      // offsetWidth (não getBoundingClientRect) porque o slide "não
+      // ativo" recebe um transform:scale() para o efeito de
+      // escurecimento nas laterais, e isso distorceria a medição.
+      const largura = slides[0].offsetWidth;
+      const folga = Math.max(0, (viewport.clientWidth - largura) / 2);
+      pista.style.paddingLeft = `${folga}px`;
+      pista.style.paddingRight = `${folga}px`;
+    }
+    ajustarFolgaCentralizacao();
+    let resizeTimeout;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        ajustarFolgaCentralizacao();
+        irPara(indiceAtual, true);
+      }, 150);
     });
-    const pontos = Array.from(indicadoresWrap.children);
+
+    if (indicadoresWrap) {
+      slides.forEach((_, i) => {
+        const ponto = document.createElement("button");
+        ponto.type = "button";
+        ponto.className = "carrossel__ponto";
+        ponto.setAttribute("aria-label", `Ir para ${rotuloItem} ${i + 1} de ${slides.length}`);
+        ponto.addEventListener("click", () => {
+          irPara(i);
+          reiniciarAutoplay();
+        });
+        indicadoresWrap.appendChild(ponto);
+      });
+    }
+    const pontos = indicadoresWrap ? Array.from(indicadoresWrap.children) : [];
 
     function atualizarIndicadores() {
       pontos.forEach((p, i) => p.classList.toggle("is-ativo", i === indiceAtual));
+      slides.forEach((s, i) => s.classList.toggle("is-atual", i === indiceAtual));
     }
 
-    function irPara(indice) {
+    function irPara(indice, instantaneo = false) {
       indiceAtual = (indice + slides.length) % slides.length;
-      viewport.scrollTo({ left: slides[indiceAtual].offsetLeft - viewport.offsetLeft, behavior: "smooth" });
+      // Rola só o carrossel (viewport.scrollBy), nunca a página: o
+      // scrollIntoView() foi abandonado aqui porque, com o
+      // autoplay rodando em segundo plano, ele podia puxar a
+      // rolagem VERTICAL da página de volta para o carrossel
+      // mesmo com a pessoa já tendo rolado para outra seção.
+      const alvo = slides[indiceAtual];
+      const rAlvo = alvo.getBoundingClientRect();
+      const rViewport = viewport.getBoundingClientRect();
+      const delta = (rAlvo.left + rAlvo.width / 2) - (rViewport.left + rViewport.width / 2);
+      viewport.scrollBy({ left: delta, behavior: instantaneo ? "auto" : "smooth" });
       atualizarIndicadores();
     }
 
@@ -328,10 +326,20 @@
       if (temporizador) clearInterval(temporizador);
     }
 
+    // Enquanto o carrossel estiver fora da tela, o autoplay não avança
+    // — assim ele nunca tenta rolar algo que a pessoa nem está vendo.
+    let visivel = true;
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(
+        (entradas) => { visivel = entradas[0].isIntersecting; },
+        { threshold: 0.2 }
+      ).observe(viewport);
+    }
+
     function iniciarAutoplay() {
       pararAutoplay();
       temporizador = setInterval(() => {
-        if (!pausado) irPara(indiceAtual + 1);
+        if (!pausado && visivel) irPara(indiceAtual + 1);
       }, 5000);
     }
 
@@ -343,10 +351,12 @@
       () => {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
+          const centroViewport = viewport.getBoundingClientRect().left + viewport.clientWidth / 2;
           let maisProximo = 0;
           let menorDistancia = Infinity;
           slides.forEach((slide, i) => {
-            const distancia = Math.abs(slide.offsetLeft - viewport.offsetLeft - viewport.scrollLeft);
+            const r = slide.getBoundingClientRect();
+            const distancia = Math.abs(r.left + r.width / 2 - centroViewport);
             if (distancia < menorDistancia) {
               menorDistancia = distancia;
               maisProximo = i;
@@ -374,7 +384,7 @@
     viewport.addEventListener("pointerdown", pararAutoplay, { passive: true });
     viewport.addEventListener("pointerup", () => { if (!pausado) iniciarAutoplay(); }, { passive: true });
 
-    atualizarIndicadores();
+    irPara(0, true);
     iniciarAutoplay();
   }
 
@@ -566,6 +576,7 @@
       revelarAoRolar(".titulo-secao");
       revelarAoRolar(".contato__texto");
       revelarAoRolar(".contato__lista");
+      revelarAoRolar(".contato__midia");
       revelarAoRolar(".explorar__imagem", { y: 25, duration: 0.6, ease: "power2.out" });
 
       /* ---- 8.4 Cascata em grupos de itens ---- */
@@ -593,7 +604,6 @@
       }
 
       revelarAoRolar(".carrossel__viewport");
-      revelarEmCascata(".faixa-modelos__pista", ".faixa-modelos__item");
       revelarEmCascata(".categorias", ".categoria-btn");
       revelarEmCascata(".explorar__lista", ".explorar__item");
       revelarEmCascata(".passos", ".passo-card");

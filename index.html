@@ -47,9 +47,11 @@
   7. Percentual de desconto no Pix e condição de parcelamento
      (hoje: até 12x, 5% no Pix — aparecem na faixa do topo, no
      carrossel e no FAQ de pagamento)
-  8. [CONFIRMADO] Endereço completo e horário batem com o perfil
-     real do Google Business (Santo André - SP). Falta confirmar
-     só o Instagram (@rocolivimports).
+  8. [CONFIRMADO] Endereço completo bate com o perfil real do Google
+     Business (Santo André - SP). Horário de atendimento é "Por
+     agendamento" (confirmado pelo usuário, substitui o horário fixo
+     que estava aqui antes). Falta confirmar só o Instagram
+     (@rocolivimports).
   ===========================================================
 -->
 
@@ -63,7 +65,7 @@
   - Nome da loja ........... buscar por "ROCOLIV"
   - Número do WhatsApp ..... CONFIG.whatsapp em js/main.js e js/upgrade-data.js
   - Instagram .............. buscar por "@rocolivimports"
-  - Horário de atendimento . buscar por "Seg a Sáb"
+  - Horário de atendimento . buscar por "Por agendamento"
   - Endereço ............... buscar por "Av. Industrial"
   - Prazo de garantia ...... buscar por "12 meses"
   - Depoimentos ............ buscar por "depoimento-card" (e repita
@@ -151,12 +153,8 @@
         "postalCode": "09080-500",
         "addressCountry": "BR"
       },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "09:00",
-        "closes": "19:00"
-      },
+      "appointmentRequired": "True",
+      "hasMap": "https://www.google.com/maps?q=Av.+Industrial,+780+-+Sl+509+-+Jardim,+Santo+Andre+-+SP,+09080-500",
       "sameAs": ["https://instagram.com/rocolivimports"],
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -280,7 +278,7 @@
           "name": "Como envio as fotos do meu iPhone?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Você pode selecionar fotos no configurador para ver as prévias. Depois de abrir o WhatsApp, envie as imagens diretamente na conversa."
+            "text": "Depois de preencher os dados do seu aparelho e abrir o WhatsApp, envie as fotos diretamente na conversa com a nossa equipe."
           }
         }
       ]
@@ -402,68 +400,61 @@
 
     <div class="carrossel__viewport" id="carrossel-viewport">
       <ul class="carrossel__pista" id="carrossel-pista">
-        <li class="carrossel__slide">
-          <span class="carrossel__icone">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 9 4.6-.3 8-4 8-9V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
-          </span>
-          <p class="carrossel__titulo">Produtos Apple</p>
-          <p class="carrossel__texto">Consulte disponibilidade, procedência e condição de cada aparelho com a equipe.</p>
+        <li class="carrossel__slide carrossel__slide--produto">
+          <picture>
+            <source srcset="img/destaques/iphone-18-pro-max-azul.webp" type="image/webp">
+            <img src="img/destaques/iphone-18-pro-max-azul.png" alt="iPhone 18 Pro Max na cor Azul" class="carrossel__produto-imagem" loading="lazy" width="1254" height="1254">
+          </picture>
+          <p class="carrossel__produto-nome">iPhone 18 Pro Max <span>Azul</span></p>
+          <a href="https://wa.me/5511959045980?text=Ol%C3%A1!%20Tenho%20interesse%20no%20iPhone%2018%20Pro%20Max%20(Azul)."
+             class="botao botao--laranja" data-whatsapp
+             data-whatsapp-msg="Olá! Tenho interesse no iPhone 18 Pro Max (Azul)."
+             target="_blank" rel="noopener">
+            Falar no WhatsApp
+          </a>
         </li>
-        <li class="carrossel__slide">
-          <span class="carrossel__icone">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4v5h5"/><path d="M20 20v-5h-5"/><path d="M5 15a8 8 0 0 0 14 3.5"/><path d="M19 9A8 8 0 0 0 5 5.5"/></svg>
-          </span>
-          <p class="carrossel__titulo">Troca do seu usado</p>
-          <p class="carrossel__texto">Seu aparelho atual pode entrar na conversa sobre a próxima troca.</p>
+        <li class="carrossel__slide carrossel__slide--produto">
+          <picture>
+            <source srcset="img/destaques/iphone-18-pro-max-bordo.webp" type="image/webp">
+            <img src="img/destaques/iphone-18-pro-max-bordo.png" alt="iPhone 18 Pro Max na cor Bordô" class="carrossel__produto-imagem" loading="lazy" width="185" height="230">
+          </picture>
+          <p class="carrossel__produto-nome">iPhone 18 Pro Max <span>Bordô</span></p>
+          <a href="https://wa.me/5511959045980?text=Ol%C3%A1!%20Tenho%20interesse%20no%20iPhone%2018%20Pro%20Max%20(Bord%C3%B4)."
+             class="botao botao--laranja" data-whatsapp
+             data-whatsapp-msg="Olá! Tenho interesse no iPhone 18 Pro Max (Bordô)."
+             target="_blank" rel="noopener">
+            Falar no WhatsApp
+          </a>
         </li>
-        <li class="carrossel__slide">
-          <span class="carrossel__icone">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/></svg>
-          </span>
-          <p class="carrossel__titulo">Condições de pagamento</p>
-          <p class="carrossel__texto">Consulte as opções disponíveis para o produto que você escolher.</p>
+        <li class="carrossel__slide carrossel__slide--produto">
+          <picture>
+            <source srcset="img/destaques/iphone-18-pro-max-preto.webp" type="image/webp">
+            <img src="img/destaques/iphone-18-pro-max-preto.png" alt="iPhone 18 Pro Max na cor Preto" class="carrossel__produto-imagem" loading="lazy" width="1254" height="1254">
+          </picture>
+          <p class="carrossel__produto-nome">iPhone 18 Pro Max <span>Preto</span></p>
+          <a href="https://wa.me/5511959045980?text=Ol%C3%A1!%20Tenho%20interesse%20no%20iPhone%2018%20Pro%20Max%20(Preto)."
+             class="botao botao--laranja" data-whatsapp
+             data-whatsapp-msg="Olá! Tenho interesse no iPhone 18 Pro Max (Preto)."
+             target="_blank" rel="noopener">
+            Falar no WhatsApp
+          </a>
         </li>
-        <li class="carrossel__slide">
-          <span class="carrossel__icone">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h11v8H3z"/><path d="M14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
-          </span>
-          <p class="carrossel__titulo">Entrega rápida</p>
-          <p class="carrossel__texto">Consulte prazos e opções de entrega diretamente com a equipe.</p>
+        <li class="carrossel__slide carrossel__slide--produto">
+          <picture>
+            <source srcset="img/destaques/iphone-duo.webp" type="image/webp">
+            <img src="img/destaques/iphone-duo.png" alt="iPhone Duo aberto, mostrando a tela dobrável" class="carrossel__produto-imagem" loading="lazy" width="1254" height="1254">
+          </picture>
+          <p class="carrossel__produto-nome">iPhone Duo</p>
+          <a href="https://wa.me/5511959045980?text=Ol%C3%A1!%20Tenho%20interesse%20no%20iPhone%20Duo."
+             class="botao botao--laranja" data-whatsapp
+             data-whatsapp-msg="Olá! Tenho interesse no iPhone Duo."
+             target="_blank" rel="noopener">
+            Falar no WhatsApp
+          </a>
         </li>
       </ul>
     </div>
 
-    <div class="container">
-      <div class="carrossel__controles">
-        <button class="carrossel__pausa" id="carrossel-pausa" type="button" aria-pressed="false" aria-label="Pausar apresentação automática">
-          <svg class="icone-pausar" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-          <svg class="icone-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5-13-7.5Z"/></svg>
-        </button>
-        <div class="carrossel__indicadores" id="carrossel-indicadores"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== FAIXA DE MODELOS ===================== -->
-  <section class="faixa-modelos" id="faixa-modelos">
-    <div class="container">
-      <div class="titulo-secao titulo-secao--esquerda">
-        <p class="titulo-secao__selo">Catálogo rápido</p>
-        <h2 class="titulo-secao__titulo">Modelos em destaque</h2>
-      </div>
-    </div>
-
-    <div class="faixa-modelos__linha">
-      <button class="faixa-modelos__seta faixa-modelos__seta--esq" type="button" aria-label="Ver modelos anteriores">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
-      </button>
-
-      <ul class="faixa-modelos__pista" id="faixa-modelos-pista"></ul>
-
-      <button class="faixa-modelos__seta faixa-modelos__seta--dir" type="button" aria-label="Ver próximos modelos">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-      </button>
-    </div>
   </section>
 
   <!-- ===================== CATEGORIAS + CATÁLOGO ===================== -->
@@ -659,7 +650,7 @@
           <p class="depoimento-card__estrelas" aria-hidden="true">★★★★★</p>
           <p class="depoimento-card__texto">"Comprei um iPhone 16 numa outra loja, e me arrependi de não ter comprado o 17 Pro Max. Fiz uns 10 orçamentos para fazer um Upgrade e a Rocoliv não foi o mais barato, mas foi de longe o melhor atendimento desde o primeiro contato. Qualidade no atendimento fez toda a diferença, e hoje estou feliz com meu 17 Pro Max."</p>
           <div class="depoimento-card__autor">
-            <span class="depoimento-card__avatar" aria-hidden="true">DR</span>
+            <img class="depoimento-card__avatar" src="img/depoimentos/daniela-reis.png" alt="" width="58" height="58" loading="lazy">
             <div>
               <p class="depoimento-card__nome">Daniela Reis</p>
               <p class="depoimento-card__cidade">Avaliação no Google · 7 meses atrás</p>
@@ -671,7 +662,7 @@
           <p class="depoimento-card__estrelas" aria-hidden="true">★★★★★</p>
           <p class="depoimento-card__texto">"Pessoas responsáveis, atendimento ao cliente muito bom. Já comprei umas três vezes e conheço outras pessoas que compraram e gostaram muito. Recomendo de olhos fechados. Loja nota 10."</p>
           <div class="depoimento-card__autor">
-            <span class="depoimento-card__avatar" aria-hidden="true">GF</span>
+            <img class="depoimento-card__avatar" src="img/depoimentos/gabriela-franca-farias.png" alt="" width="58" height="58" loading="lazy">
             <div>
               <p class="depoimento-card__nome">Gabriela França Farias</p>
               <p class="depoimento-card__cidade">Avaliação no Google · 3 meses atrás</p>
@@ -683,7 +674,7 @@
           <p class="depoimento-card__estrelas" aria-hidden="true">★★★★★</p>
           <p class="depoimento-card__texto">"A melhor loja de todas, tive suporte do começo ao fim. Já comprei mais de 8 celulares com eles, do meu iPhone 11 ao meu 17, fora o celular da minha esposa e das minhas filhas. Uma loja que indico para todos os meus colegas e amigos."</p>
           <div class="depoimento-card__autor">
-            <span class="depoimento-card__avatar" aria-hidden="true">JG</span>
+            <img class="depoimento-card__avatar" src="img/depoimentos/jean-guedes.png" alt="" width="58" height="58" loading="lazy">
             <div>
               <p class="depoimento-card__nome">Jean Guedes</p>
               <p class="depoimento-card__cidade">Avaliação no Google · 3 meses atrás</p>
@@ -695,7 +686,7 @@
           <p class="depoimento-card__estrelas" aria-hidden="true">★★★★★</p>
           <p class="depoimento-card__texto">"O Robson e a Vivi sempre me atenderam super bem. Comprei mais de 3 produtos Apple com eles e sempre com atendimento excepcional, uma entrega premium e um preço acessível."</p>
           <div class="depoimento-card__autor">
-            <span class="depoimento-card__avatar" aria-hidden="true">HM</span>
+            <img class="depoimento-card__avatar" src="img/depoimentos/higor-monteiro.png" alt="" width="58" height="58" loading="lazy">
             <div>
               <p class="depoimento-card__nome">Higor Monteiro</p>
               <p class="depoimento-card__cidade">Avaliação no Google · 3 meses atrás</p>
@@ -707,7 +698,7 @@
           <p class="depoimento-card__estrelas" aria-hidden="true">★★★★★</p>
           <p class="depoimento-card__texto">"Atendimento exclusivo, atendente educado, melhor experiência possível. Não cheguei a cotar com outras lojas, mas o valor é acessível e dentro dos padrões pesquisados do Google! Recomendo muito."</p>
           <div class="depoimento-card__autor">
-            <span class="depoimento-card__avatar" aria-hidden="true">BC</span>
+            <img class="depoimento-card__avatar" src="img/depoimentos/bernardo-monteiro-cunha.png" alt="" width="58" height="58" loading="lazy">
             <div>
               <p class="depoimento-card__nome">Bernardo Monteiro Cunha</p>
               <p class="depoimento-card__cidade">Avaliação no Google</p>
@@ -719,7 +710,7 @@
           <p class="depoimento-card__estrelas" aria-hidden="true">★★★★★</p>
           <p class="depoimento-card__texto">"Na qualidade de Advogada, antes de comprar qualquer produto, eu sempre analiso e faço minhas pesquisas jurídicas. Recebi várias indicações até ter a certeza que fecharia com o Robson e equipe, que, frente a todos os que procurei, foi a loja que mais me transmitiu segurança e confiabilidade. Agradeço pelo atendimento humanizado, um ambiente aconchegando e acolhedor."</p>
           <div class="depoimento-card__autor">
-            <span class="depoimento-card__avatar" aria-hidden="true">NN</span>
+            <img class="depoimento-card__avatar" src="img/depoimentos/natalia-nah.png" alt="" width="58" height="58" loading="lazy">
             <div>
               <p class="depoimento-card__nome">Natalia Nah</p>
               <p class="depoimento-card__cidade">Avaliação no Google · 3 meses atrás</p>
@@ -804,7 +795,7 @@
         </details>
         <details class="faq-item" data-faq-item>
           <summary class="faq-item__pergunta">Como envio as fotos do meu iPhone?<span class="faq-item__icone" aria-hidden="true"></span></summary>
-          <div class="faq-item__resposta"><p>Você pode selecionar fotos no configurador para ver as prévias. Depois de abrir o WhatsApp, envie as imagens diretamente na conversa.</p></div>
+          <div class="faq-item__resposta"><p>Depois de preencher os dados do seu aparelho e abrir o WhatsApp, envie as fotos diretamente na conversa com a nossa equipe.</p></div>
         </details>
       </div>
     </div>
@@ -814,38 +805,63 @@
   <section class="contato" id="contato">
     <div class="container contato__grade">
       <div class="contato__texto">
-        <div class="titulo-secao titulo-secao--esquerda">
-          <p class="titulo-secao__selo">Fale com a gente</p>
-          <h2 class="titulo-secao__titulo">Pronto para dar o próximo passo?</h2>
+        <div class="contato__texto-conteudo">
+          <div class="titulo-secao titulo-secao--esquerda">
+            <p class="titulo-secao__selo">Fale com a gente</p>
+            <h2 class="titulo-secao__titulo">Pronto para dar o próximo passo?</h2>
+          </div>
+          <p class="contato__descricao">
+            Seu próximo iPhone pode estar mais perto do que você imagina. Conte os dados do seu aparelho atual ou converse com a equipe sobre os produtos disponíveis.
+          </p>
+          <a href="#upgrade" class="botao botao--contorno contato__upgrade">Fazer meu upgrade</a>
+          <a href="https://wa.me/5511959045980?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Rocoliv%20Imports."
+             class="botao botao--laranja" data-whatsapp target="_blank" rel="noopener">
+            Falar no WhatsApp
+          </a>
         </div>
-        <p class="contato__descricao">
-          Seu próximo iPhone pode estar mais perto do que você imagina. Conte os dados do seu aparelho atual ou converse com a equipe sobre os produtos disponíveis.
-        </p>
-        <a href="#upgrade" class="botao botao--contorno contato__upgrade">Fazer meu upgrade</a>
-        <a href="https://wa.me/5511959045980?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Rocoliv%20Imports."
-           class="botao botao--laranja" data-whatsapp target="_blank" rel="noopener">
-          Falar no WhatsApp
-        </a>
+
+        <!--
+          FOTO REAL DO ESCRITÓRIO — AINDA NÃO RECEBIDA.
+          Assim que tiver o arquivo, salve em img/contato/escritorio.jpg
+          e troque o bloco ".contato__foto-placeholder" abaixo por:
+          <img src="img/contato/escritorio.jpg" alt="Escritório da Rocoliv Imports" class="contato__foto" loading="lazy" width="800" height="600">
+        -->
+        <div class="contato__foto-placeholder" role="img" aria-label="Foto do escritório da Rocoliv Imports (em breve)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 21V7l8-4 8 4v14"/><path d="M9 21v-6h6v6"/><path d="M4 11h16"/></svg>
+          <span>Foto do escritório em breve</span>
+        </div>
       </div>
 
-      <ul class="contato__lista">
-        <li class="contato__item">
-          <span class="contato__rotulo">WhatsApp</span>
-          <a href="https://wa.me/5511959045980" data-whatsapp-numero target="_blank" rel="noopener" class="contato__valor">(11) 95904-5980</a>
-        </li>
-        <li class="contato__item">
-          <span class="contato__rotulo">Instagram</span>
-          <a href="https://instagram.com/rocolivimports" target="_blank" rel="noopener" class="contato__valor">@rocolivimports</a>
-        </li>
-        <li class="contato__item">
-          <span class="contato__rotulo">Horário</span>
-          <span class="contato__valor">Seg a Sáb, das 9h às 19h</span>
-        </li>
-        <li class="contato__item">
-          <span class="contato__rotulo">Endereço</span>
-          <span class="contato__valor">Av. Industrial, 780 - Sl 509 - Jardim, Santo André - SP</span>
-        </li>
-      </ul>
+      <div class="contato__coluna-direita">
+        <ul class="contato__lista">
+          <li class="contato__item">
+            <span class="contato__rotulo">WhatsApp</span>
+            <a href="https://wa.me/5511959045980" data-whatsapp-numero target="_blank" rel="noopener" class="contato__valor">(11) 95904-5980</a>
+          </li>
+          <li class="contato__item">
+            <span class="contato__rotulo">Instagram</span>
+            <a href="https://instagram.com/rocolivimports" target="_blank" rel="noopener" class="contato__valor">@rocolivimports</a>
+          </li>
+          <li class="contato__item">
+            <span class="contato__rotulo">Horário</span>
+            <span class="contato__valor">Por agendamento</span>
+          </li>
+          <li class="contato__item">
+            <span class="contato__rotulo">Endereço</span>
+            <span class="contato__valor">Av. Industrial, 780 - Sl 509 - Jardim, Santo André - SP</span>
+          </li>
+        </ul>
+
+        <div class="contato__mapa-wrap">
+          <iframe
+            class="contato__mapa"
+            src="https://www.google.com/maps?q=Av.%20Industrial%2C%20780%20-%20Sl%20509%20-%20Jardim%2C%20Santo%20Andr%C3%A9%20-%20SP%2C%2009080-500&output=embed"
+            title="Localização da Rocoliv Imports no Google Maps"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
     </div>
   </section>
 

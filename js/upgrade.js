@@ -15,8 +15,7 @@
     replaced: "",
     parts: [],
     partsOther: "",
-    observacoes: "",
-    photos: []
+    observacoes: ""
   };
 
   const $ = (s) => app.querySelector(s);
@@ -100,12 +99,10 @@
           : ""
       }`,
 
-      // 03 — Detalhes (observações + fotos)
+      // 03 — Detalhes (observações)
       `<p class="upgrade__eyebrow">03 — DETALHES</p><h3>Mais alguma informação?</h3><label class="upgrade__label">Observações (opcional)<textarea class="upgrade__input upgrade__textarea" data-field="observacoes" placeholder="Conte algum detalhe que possa ajudar na avaliação.">${escape(
         d.observacoes
-      )}</textarea></label><p class="upgrade__helper" style="margin-top:22px">Mostre seu iPhone: fotos ajudam nossa equipe a avaliar melhor o estado do aparelho.</p><label class="upgrade__upload" data-drop><input type="file" accept="image/*" multiple data-photos><span class="upgrade__upload-icon">＋</span><strong>Escolher fotos</strong><small>ou arraste até aqui · até 5 imagens, 5 MB cada</small></label><div class="upgrade__previews">${d.photos
-        .map((x, i) => `<figure><img src="${x.url}" alt="Prévia da foto ${i + 1}"><button type="button" data-remove="${i}" aria-label="Remover foto ${i + 1}">×</button></figure>`)
-        .join("")}</div><p class="upgrade__helper">As fotos não são anexadas automaticamente ao WhatsApp. Depois de enviar, você poderá anexá-las direto na conversa.</p>`,
+      )}</textarea></label><p class="upgrade__helper" style="margin-top:22px">Depois de enviar, você vai poder mandar fotos do aparelho direto na conversa do WhatsApp para ajudar na avaliação.</p>`,
 
       // 04 — Revisão
       `<p class="upgrade__eyebrow">04 — REVISÃO</p><h3>Revise antes de enviar</h3><div class="upgrade__summary"><div><span>Seu aparelho</span><strong>${
@@ -114,9 +111,7 @@
         d.observacoes.trim()
           ? `<p class="upgrade__helper"><strong style="color:var(--branco)">Observações:</strong> ${escape(d.observacoes)}</p>`
           : ""
-      }<p class="upgrade__helper">${
-        d.photos.length ? `${d.photos.length} foto(s) selecionada(s).` : "Nenhuma foto selecionada ainda — você também pode enviar depois, direto na conversa do WhatsApp."
-      }</p><p class="upgrade__disclaimer">Nossa equipe vai analisar essas informações (e as fotos, se enviadas) e responder com o valor do seu upgrade pelo WhatsApp.</p>`
+      }<p class="upgrade__helper">Depois de enviar, abra a conversa do WhatsApp e mande as fotos do aparelho por lá.</p><p class="upgrade__disclaimer">Nossa equipe vai analisar essas informações e as fotos, e responder com o valor do seu upgrade pelo WhatsApp.</p>`
     ];
     steps.forEach((el, i) => {
       const active = i === step - 1;
@@ -178,28 +173,6 @@
         render();
       })
     );
-
-    const input = active.querySelector("[data-photos]");
-    if (input) {
-      input.addEventListener("change", () => addPhotos(input.files));
-      const drop = active.querySelector("[data-drop]");
-      ["dragover", "dragenter"].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add("is-dragging"); }));
-      ["dragleave", "drop"].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove("is-dragging"); }));
-      drop.addEventListener("drop", (e) => addPhotos(e.dataTransfer.files));
-    }
-    active.querySelectorAll("[data-remove]").forEach((b) =>
-      b.addEventListener("click", () => { URL.revokeObjectURL(d.photos.splice(+b.dataset.remove, 1)[0].url); render(); })
-    );
-  }
-
-  function addPhotos(files) {
-    const all = [...files].filter((f) => f.type.startsWith("image/"));
-    const valid = all.filter((f) => f.size <= 5 * 1024 * 1024).slice(0, 5 - d.photos.length);
-    valid.forEach((file) => d.photos.push({ file, url: URL.createObjectURL(file) }));
-    if (valid.length < all.length) {
-      error(all.some((f) => f.size > 5 * 1024 * 1024) ? "Cada imagem precisa ter no máximo 5 MB." : "Você pode adicionar até 5 imagens.");
-    }
-    render();
   }
 
   function error(msg) {
@@ -248,12 +221,7 @@
       `Peças substituídas: ${resumoPecas()}`
     ];
     if (d.observacoes.trim()) linhas.push("Observações:", d.observacoes.trim());
-    linhas.push("");
-    linhas.push(
-      d.photos.length
-        ? `Estou enviando ${d.photos.length === 1 ? "a foto" : `as ${d.photos.length} fotos`} do aparelho para avaliação.`
-        : "Vou enviar fotos do aparelho aqui na conversa para avaliação."
-    );
+    linhas.push("", "Vou enviar fotos do aparelho aqui na conversa para avaliação.");
     linhas.push("Gostaria de saber quanto ficaria meu Upgrade.");
     return linhas.join("\n");
   }
@@ -270,9 +238,7 @@
   function finish() {
     send();
     const old = device(d.current);
-    $("[data-upgrade-result]").innerHTML = `<p class="upgrade__eyebrow">QUASE PRONTO</p><h3>Sua avaliação foi enviada.</h3><p class="upgrade__result-copy">Abrimos o WhatsApp com os dados do seu ${old.name}. ${
-      d.photos.length ? "Anexe as fotos selecionadas diretamente na conversa para concluir." : "Se quiser, anexe fotos do aparelho diretamente na conversa."
-    }</p><div class="upgrade__summary"><div><span>Seu aparelho</span><strong>${old.name} · ${storeText(
+    $("[data-upgrade-result]").innerHTML = `<p class="upgrade__eyebrow">QUASE PRONTO</p><h3>Sua avaliação foi enviada.</h3><p class="upgrade__result-copy">Abrimos o WhatsApp com os dados do seu ${old.name}. Agora envie as fotos do aparelho diretamente na conversa para que nossa equipe possa analisar o seu Upgrade.</p><div class="upgrade__summary"><div><span>Seu aparelho</span><strong>${old.name} · ${storeText(
       d.storage
     )}</strong></div><div><span>Bateria</span><strong>${d.battery}%</strong></div><div><span>Estado</span><strong>${condLabel()}</strong></div><div><span>Peças substituídas</span><strong>${resumoPecas()}</strong></div></div><p class="upgrade__disclaimer">O valor do seu upgrade é definido pela nossa equipe depois da avaliação física e funcional do aparelho.</p><div class="upgrade__result-actions"><button class="upgrade__button" type="button" data-reopen>Abrir WhatsApp novamente <span aria-hidden="true">→</span></button><button class="upgrade__back" type="button" data-reset>Fazer nova avaliação</button></div>`;
     $("[data-upgrade-wizard]").hidden = true;
@@ -283,10 +249,9 @@
   }
 
   function reset() {
-    d.photos.forEach((p) => URL.revokeObjectURL(p.url));
     Object.assign(d, {
       current: "", storage: "", battery: "90", condition: "", replaced: "",
-      parts: [], partsOther: "", observacoes: "", photos: []
+      parts: [], partsOther: "", observacoes: ""
     });
     step = 1;
     $("[data-upgrade-result]").hidden = true;

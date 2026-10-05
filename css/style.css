@@ -190,8 +190,7 @@ section { padding: 64px 0; scroll-margin-top: 150px; }
 .upgrade__button--dark { background: var(--grafite-claro); color: var(--branco); border: 1.5px solid var(--borda); }
 .upgrade__button--dark:hover { box-shadow: none; border-color: var(--laranja); }
 .upgrade__button:focus-visible, .upgrade__back:focus-visible, .upgrade__close:focus-visible,
-.upgrade__choice:focus-visible, .upgrade__select:focus-visible, .upgrade__input:focus-visible,
-.upgrade__upload:focus-within {
+.upgrade__choice:focus-visible, .upgrade__select:focus-visible, .upgrade__input:focus-visible {
   outline: 2px solid var(--laranja);
   outline-offset: 3px;
 }
@@ -263,28 +262,6 @@ section { padding: 64px 0; scroll-margin-top: 150px; }
 .upgrade__choice:hover, .upgrade__choice.is-selected { border-color: var(--laranja); background: rgba(255, 106, 0, .1); }
 .upgrade__choice span { display: block; font-size: .84rem; font-weight: 600; }
 .upgrade__choice small { display: block; margin-top: 5px; color: var(--cinza-medio); font-size: .69rem; line-height: 1.35; }
-.upgrade__upload {
-  min-height: 135px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  border: 1.5px dashed var(--borda);
-  border-radius: var(--raio-pequeno);
-  color: var(--cinza-claro);
-  cursor: pointer;
-  transition: border-color .2s ease, background .2s ease;
-}
-.upgrade__upload.is-dragging { background: rgba(255, 106, 0, .08); border-color: var(--laranja); }
-.upgrade__upload input { position: absolute; width: 1px; height: 1px; opacity: 0; }
-.upgrade__upload-icon { font-size: 1.5rem; color: var(--laranja); }
-.upgrade__upload strong { font-size: .86rem; color: var(--branco); }
-.upgrade__upload small { color: var(--cinza-medio); font-size: .72rem; }
-.upgrade__previews { display: flex; gap: 8px; margin: 10px 0; }
-.upgrade__previews figure { position: relative; width: 58px; height: 58px; border-radius: 10px; overflow: hidden; }
-.upgrade__previews img { width: 100%; height: 100%; object-fit: cover; }
-.upgrade__previews button { position: absolute; top: -6px; right: -6px; width: 22px; height: 22px; border-radius: 50%; background: var(--laranja); color: var(--preto); font-size: .75rem; }
 .upgrade__actions { display: flex; justify-content: space-between; align-items: center; gap: 14px; border-top: 1px solid var(--borda); padding-top: 18px; }
 .upgrade__back { color: var(--cinza-claro); font-size: .86rem; padding: 12px 0; }
 .upgrade__back:hover { color: var(--laranja); }
@@ -761,7 +738,7 @@ h1, h2, h3 {
 
 .carrossel__slide {
   scroll-snap-align: center;
-  flex: 0 0 min(320px, 82vw);
+  flex: 0 0 100%;
   background: var(--grafite);
   border: 1px solid var(--borda);
   border-radius: var(--raio);
@@ -774,31 +751,51 @@ h1, h2, h3 {
   box-shadow: 0 16px 32px rgba(255, 106, 0, 0.12);
 }
 
-.carrossel__icone {
+/* O espaço nas pontas da pista (para centralizar o primeiro e o
+   último slide) é calculado e aplicado via JavaScript, em pixels
+   reais — ver ajustarFolgaCentralizacao() em js/main.js. Remove
+   max-width e width:100% herdados do carrossel genérico: com
+   box-sizing:border-box, width:100% trava a largura total da pista
+   no tamanho do viewport, e o padding passa a "competir" pelo
+   mesmo espaço em vez de somar — o que impedia a pista de crescer
+   o suficiente para sobrar espaço de rolagem nas pontas. Sem
+   largura fixa, a pista cresce naturalmente para caber o padding
+   + os slides + os espaçamentos entre eles. */
+#carrossel-pista {
+  width: auto;
+  max-width: none;
+}
+
+.carrossel__slide--produto {
+  flex: 0 0 min(420px, 84vw);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1.5px solid var(--laranja);
-  background: linear-gradient(135deg, rgba(255,106,0,0.18) 0%, rgba(255,106,0,0.02) 100%);
-  color: var(--laranja);
-  margin-bottom: 18px;
+  text-align: center;
+  gap: 18px;
+  padding: 28px 20px 36px;
+  transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.carrossel__icone svg { width: 22px; height: 22px; }
-
-.carrossel__titulo {
+/* Slide ativo (centralizado) aparece em destaque; os vizinhos, que
+   espiam nas laterais, ficam escurecidos — efeito "coverflow". */
+.carrossel__slide--produto:not(.is-atual) {
+  opacity: 0.55;
+  filter: brightness(0.5) saturate(0.8);
+  transform: scale(0.92);
+}
+.carrossel__produto-imagem {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  object-fit: contain;
+}
+.carrossel__produto-nome {
+  font-family: var(--fonte-titulo);
   font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: -0.01em;
-  margin-bottom: 8px;
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  letter-spacing: -0.02em;
 }
-
-.carrossel__texto {
-  color: var(--cinza-claro);
-  font-size: 0.9rem;
-}
+.carrossel__produto-nome span { color: var(--laranja); }
 
 /* Estado sem animação (reduzir movimento): grade normal, sem carrossel */
 .carrossel__viewport.esta-estatico {
@@ -811,7 +808,7 @@ h1, h2, h3 {
   flex-wrap: wrap;
   justify-content: center;
 }
-.carrossel__viewport.esta-estatico .carrossel__slide { flex: 1 1 260px; max-width: 320px; }
+.carrossel__viewport.esta-estatico .carrossel__slide { flex: 1 1 320px; max-width: 360px; }
 
 .carrossel__controles {
   display: flex;
@@ -854,127 +851,6 @@ h1, h2, h3 {
 .carrossel__ponto.is-ativo {
   width: 26px;
   background: var(--laranja);
-}
-
-/* =========================================================
-   FAIXA DE MODELOS
-   ========================================================= */
-.faixa-modelos { background: var(--preto); }
-.faixa-modelos__linha {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.faixa-modelos__pista {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding: 4px 20px 8px;
-  flex: 1;
-  /* Quando todos os modelos cabem na tela, centraliza a fileira em
-     vez de deixar um vazio à direita. "safe" garante que, se não
-     couber tudo, volta a alinhar pela esquerda (rolável) em vez de
-     cortar o primeiro item. */
-  justify-content: safe center;
-}
-.faixa-modelos__pista::-webkit-scrollbar { display: none; }
-
-@media (min-width: 700px) {
-  .faixa-modelos__pista { padding-left: 40px; padding-right: 40px; }
-}
-
-/* O <li> (filho direto da lista flex) é quem precisa do tamanho
-   fixo — o <button> dentro dele só organiza o conteúdo interno. */
-.faixa-modelos__pista > li {
-  scroll-snap-align: start;
-  flex: 0 0 148px;
-}
-
-.faixa-modelos__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  text-align: center;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-.faixa-modelos__imagem-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: var(--raio-pequeno);
-  overflow: hidden;
-  background: var(--grafite);
-  border: 1px solid var(--borda);
-  padding: 16px;
-  margin-bottom: 12px;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.faixa-modelos__item:hover .faixa-modelos__imagem-wrap {
-  transform: translateY(-4px);
-  border-color: rgba(255, 106, 0, 0.5);
-  box-shadow: 0 12px 26px rgba(255, 106, 0, 0.15);
-}
-
-.faixa-modelos__imagem {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.faixa-modelos__selo {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  z-index: 1;
-  padding: 3px 8px;
-  border-radius: 100px;
-  font-size: 0.58rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  line-height: 1.4;
-  letter-spacing: 0.03em;
-}
-.faixa-modelos__selo--novo { background: var(--gradiente-laranja); color: var(--preto); }
-.faixa-modelos__selo--seminovo { background: var(--grafite-claro); color: var(--cinza-claro); border: 1px solid var(--borda); }
-
-.faixa-modelos__nome {
-  display: flex;
-  align-items: center;
-  min-height: 2.6em;
-  font-size: 0.85rem;
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--branco);
-}
-
-.faixa-modelos__seta {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1.5px solid var(--borda);
-  color: var(--cinza-claro);
-  flex-shrink: 0;
-  transition: border-color 0.25s ease, color 0.25s ease;
-}
-.faixa-modelos__seta:hover { border-color: var(--laranja); color: var(--laranja); }
-.faixa-modelos__seta svg { width: 18px; height: 18px; }
-
-@media (min-width: 1024px) {
-  .faixa-modelos__seta { display: flex; }
 }
 
 /* =========================================================
@@ -1460,14 +1336,8 @@ h1, h2, h3 {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(255,106,0,0.28) 0%, rgba(255,106,0,0.04) 100%);
+  object-fit: cover;
   border: 1px solid var(--laranja);
-  color: var(--laranja);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 0.85rem;
   flex-shrink: 0;
 }
 
@@ -1542,6 +1412,14 @@ h1, h2, h3 {
   margin-bottom: 28px;
 }
 
+.contato__coluna-direita { display: flex; flex-direction: column; gap: 36px; }
+
+@media (min-width: 700px) {
+  .contato__coluna-direita { flex-direction: row; align-items: flex-start; gap: 32px; }
+  .contato__lista { flex: 1; min-width: 0; }
+  .contato__mapa-wrap { flex: 1; }
+}
+
 .contato__lista {
   display: flex;
   flex-direction: column;
@@ -1570,11 +1448,55 @@ h1, h2, h3 {
 .contato__valor { font-weight: 600; }
 a.contato__valor:hover { color: var(--laranja); }
 
-@media (min-width: 1024px) {
-  .contato__grade { flex-direction: row; gap: 100px; }
-  .contato__texto, .contato__lista { flex: 1; }
-  .contato__lista { padding-top: 0; border-top: none; align-self: center; }
+.contato__texto { display: flex; flex-direction: column; }
+
+.contato__foto-placeholder {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--raio);
+  border: 1.5px dashed var(--borda);
+  background: var(--grafite);
+  color: var(--cinza-medio);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 24px;
+  margin-top: 28px;
 }
+.contato__foto-placeholder svg { width: 34px; height: 34px; }
+.contato__foto {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--raio);
+  display: block;
+  margin-top: 28px;
+}
+
+/* Essa sobrescrita precisa vir DEPOIS das regras base acima: mesma
+   especificidade (uma classe), então quem vem por último no arquivo
+   vence — colocada antes, o max-width:360px da regra base sempre
+   ganhava e travava o tamanho da foto, mesmo dentro do @media. */
+@media (min-width: 700px) {
+  .contato__texto { flex-direction: row; align-items: center; gap: 40px; }
+  .contato__texto-conteudo { flex: 1; min-width: 0; }
+  .contato__foto-placeholder, .contato__foto { flex: 2.2; max-width: none; margin-top: 0; }
+}
+
+.contato__mapa-wrap {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--raio);
+  overflow: hidden;
+  border: 1px solid var(--borda);
+}
+.contato__mapa { width: 100%; height: 100%; border: 0; display: block; }
+
 
 /* =========================================================
    RODAPÉ

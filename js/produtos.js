@@ -51,23 +51,23 @@ const PRODUTOS = [
   },
   {
     id: 3,
-    nome: "iPhone 14",
-    capacidade: "128GB",
-    cor: "Meia-noite",
-    condicao: "seminovo",
+    nome: "iPhone 18 Pro Max",
+    capacidade: "256GB",
+    cor: "Azul",
+    condicao: "novo",
     categoria: "iphone",
     preco: null,
-    imagem: "img/produtos/iPhone-14.webp"
+    imagem: "img/produtos/iPhone-18-Pro-Max-Azul.webp"
   },
   {
     id: 4,
-    nome: "iPhone 13",
-    capacidade: "128GB",
-    cor: "Estelar",
-    condicao: "seminovo",
+    nome: "iPhone 18 Pro Max",
+    capacidade: "256GB",
+    cor: "Preto",
+    condicao: "novo",
     categoria: "iphone",
     preco: null,
-    imagem: "img/produtos/iPhone-13.webp"
+    imagem: "img/produtos/iPhone-18-Pro-Max-Preto.webp"
   },
   {
     id: 5,
