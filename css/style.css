@@ -783,6 +783,11 @@ h1, h2, h3 {
   filter: brightness(0.5) saturate(0.8);
   transform: scale(0.92);
 }
+.carrossel__slide--produto picture {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+}
 .carrossel__produto-imagem {
   width: 100%;
   max-width: 320px;
@@ -1450,43 +1455,36 @@ a.contato__valor:hover { color: var(--laranja); }
 
 .contato__texto { display: flex; flex-direction: column; }
 
-.contato__foto-placeholder {
+/* O <picture> (não o <img> por si só) é o filho direto do flex
+   container — sem "display:block" explícito aqui, o navegador usa
+   a proporção das WIDTH/HEIGHT do <img> (os atributos HTML, usados
+   pra evitar layout shift) pra dimensionar o <picture> todo,
+   ignorando o aspect-ratio do CSS abaixo e cortando a foto. */
+.contato__texto picture {
+  display: block;
   width: 100%;
   max-width: 360px;
-  aspect-ratio: 4 / 3;
-  border-radius: var(--raio);
-  border: 1.5px dashed var(--borda);
-  background: var(--grafite);
-  color: var(--cinza-medio);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 0.85rem;
-  text-align: center;
-  padding: 24px;
-  margin-top: 28px;
 }
-.contato__foto-placeholder svg { width: 34px; height: 34px; }
+
 .contato__foto {
   width: 100%;
-  max-width: 360px;
-  aspect-ratio: 4 / 3;
+  height: auto;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: var(--raio);
   display: block;
   margin-top: 28px;
 }
 
-/* Essa sobrescrita precisa vir DEPOIS das regras base acima: mesma
+/* Essa sobrescrita precisa vir DEPOIS da regra base acima: mesma
    especificidade (uma classe), então quem vem por último no arquivo
    vence — colocada antes, o max-width:360px da regra base sempre
    ganhava e travava o tamanho da foto, mesmo dentro do @media. */
 @media (min-width: 700px) {
   .contato__texto { flex-direction: row; align-items: center; gap: 40px; }
-  .contato__texto-conteudo { flex: 1; min-width: 0; }
-  .contato__foto-placeholder, .contato__foto { flex: 2.2; max-width: none; margin-top: 0; }
+  .contato__texto-conteudo { flex: 1 1 320px; min-width: 280px; }
+  .contato__texto picture { flex: 1 1 480px; max-width: 560px; }
+  .contato__foto { margin-top: 0; }
 }
 
 .contato__mapa-wrap {

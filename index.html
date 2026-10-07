@@ -40,9 +40,9 @@
      real no schema (AggregateRating + Review). Se cadastrar mais
      avaliações reais depois, adicione na seção (index.html) e no
      JSON-LD (array "review" do LocalBusiness) junto.
-  5. Fotos reais dos produtos e da loja (hoje usamos ilustrações
-     de exemplo em quase tudo, e duas fotos genéricas de still de
-     produto em img/hero/ e img/destaque/)
+  5. [CONFIRMADO] Foto real do escritório adicionada (seção de
+     contato, img/contato/escritorio.jpg). As fotos de produtos em
+     img/hero/ e img/destaque/ ainda são genéricas/ilustrativas.
   6. Preços de cada produto em js/produtos.js (todos fictícios)
   7. Percentual de desconto no Pix e condição de parcelamento
      (hoje: até 12x, 5% no Pix — aparecem na faixa do topo, no
@@ -50,8 +50,8 @@
   8. [CONFIRMADO] Endereço completo bate com o perfil real do Google
      Business (Santo André - SP). Horário de atendimento é "Por
      agendamento" (confirmado pelo usuário, substitui o horário fixo
-     que estava aqui antes). Falta confirmar só o Instagram
-     (@rocolivimports).
+     que estava aqui antes). Instagram confirmado pelo usuário: @rocoliv
+     (instagram.com/rocoliv) — não é @rocolivimports.
   ===========================================================
 -->
 
@@ -64,7 +64,7 @@
 
   - Nome da loja ........... buscar por "ROCOLIV"
   - Número do WhatsApp ..... CONFIG.whatsapp em js/main.js e js/upgrade-data.js
-  - Instagram .............. buscar por "@rocolivimports"
+  - Instagram .............. buscar por "@rocoliv"
   - Horário de atendimento . buscar por "Por agendamento"
   - Endereço ............... buscar por "Av. Industrial"
   - Prazo de garantia ...... buscar por "12 meses"
@@ -135,7 +135,7 @@
       "name": "Rocoliv Imports",
       "url": "https://rocolivimports.com.br/",
       "logo": "https://rocolivimports.com.br/img/logo-rocoliv.png",
-      "sameAs": ["https://instagram.com/rocolivimports"]
+      "sameAs": ["https://www.instagram.com/rocoliv/"]
     },
     {
       "@type": ["LocalBusiness", "ElectronicsStore"],
@@ -155,7 +155,7 @@
       },
       "appointmentRequired": "True",
       "hasMap": "https://www.google.com/maps?q=Av.+Industrial,+780+-+Sl+509+-+Jardim,+Santo+Andre+-+SP,+09080-500",
-      "sameAs": ["https://instagram.com/rocolivimports"],
+      "sameAs": ["https://www.instagram.com/rocoliv/"],
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5.0",
@@ -416,7 +416,7 @@
         <li class="carrossel__slide carrossel__slide--produto">
           <picture>
             <source srcset="img/destaques/iphone-18-pro-max-bordo.webp" type="image/webp">
-            <img src="img/destaques/iphone-18-pro-max-bordo.png" alt="iPhone 18 Pro Max na cor Bordô" class="carrossel__produto-imagem" loading="lazy" width="185" height="230">
+            <img src="img/destaques/iphone-18-pro-max-bordo.png" alt="iPhone 18 Pro Max na cor Bordô" class="carrossel__produto-imagem" loading="lazy" width="230" height="230">
           </picture>
           <p class="carrossel__produto-nome">iPhone 18 Pro Max <span>Bordô</span></p>
           <a href="https://wa.me/5511959045980?text=Ol%C3%A1!%20Tenho%20interesse%20no%20iPhone%2018%20Pro%20Max%20(Bord%C3%B4)."
@@ -653,7 +653,7 @@
             <img class="depoimento-card__avatar" src="img/depoimentos/daniela-reis.png" alt="" width="58" height="58" loading="lazy">
             <div>
               <p class="depoimento-card__nome">Daniela Reis</p>
-              <p class="depoimento-card__cidade">Avaliação no Google · 7 meses atrás</p>
+              <p class="depoimento-card__cidade">Avaliação no Google</p>
             </div>
           </div>
         </li>
@@ -665,7 +665,7 @@
             <img class="depoimento-card__avatar" src="img/depoimentos/gabriela-franca-farias.png" alt="" width="58" height="58" loading="lazy">
             <div>
               <p class="depoimento-card__nome">Gabriela França Farias</p>
-              <p class="depoimento-card__cidade">Avaliação no Google · 3 meses atrás</p>
+              <p class="depoimento-card__cidade">Avaliação no Google</p>
             </div>
           </div>
         </li>
@@ -677,7 +677,7 @@
             <img class="depoimento-card__avatar" src="img/depoimentos/jean-guedes.png" alt="" width="58" height="58" loading="lazy">
             <div>
               <p class="depoimento-card__nome">Jean Guedes</p>
-              <p class="depoimento-card__cidade">Avaliação no Google · 3 meses atrás</p>
+              <p class="depoimento-card__cidade">Avaliação no Google</p>
             </div>
           </div>
         </li>
@@ -689,7 +689,7 @@
             <img class="depoimento-card__avatar" src="img/depoimentos/higor-monteiro.png" alt="" width="58" height="58" loading="lazy">
             <div>
               <p class="depoimento-card__nome">Higor Monteiro</p>
-              <p class="depoimento-card__cidade">Avaliação no Google · 3 meses atrás</p>
+              <p class="depoimento-card__cidade">Avaliação no Google</p>
             </div>
           </div>
         </li>
@@ -713,7 +713,7 @@
             <img class="depoimento-card__avatar" src="img/depoimentos/natalia-nah.png" alt="" width="58" height="58" loading="lazy">
             <div>
               <p class="depoimento-card__nome">Natalia Nah</p>
-              <p class="depoimento-card__cidade">Avaliação no Google · 3 meses atrás</p>
+              <p class="depoimento-card__cidade">Avaliação no Google</p>
             </div>
           </div>
         </li>
@@ -820,16 +820,10 @@
           </a>
         </div>
 
-        <!--
-          FOTO REAL DO ESCRITÓRIO — AINDA NÃO RECEBIDA.
-          Assim que tiver o arquivo, salve em img/contato/escritorio.jpg
-          e troque o bloco ".contato__foto-placeholder" abaixo por:
-          <img src="img/contato/escritorio.jpg" alt="Escritório da Rocoliv Imports" class="contato__foto" loading="lazy" width="800" height="600">
-        -->
-        <div class="contato__foto-placeholder" role="img" aria-label="Foto do escritório da Rocoliv Imports (em breve)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 21V7l8-4 8 4v14"/><path d="M9 21v-6h6v6"/><path d="M4 11h16"/></svg>
-          <span>Foto do escritório em breve</span>
-        </div>
+        <picture>
+          <source srcset="img/contato/escritorio.webp" type="image/webp">
+          <img src="img/contato/escritorio.jpg" alt="Escritório da Rocoliv Imports" class="contato__foto" loading="lazy" width="1200" height="658">
+        </picture>
       </div>
 
       <div class="contato__coluna-direita">
@@ -840,7 +834,7 @@
           </li>
           <li class="contato__item">
             <span class="contato__rotulo">Instagram</span>
-            <a href="https://instagram.com/rocolivimports" target="_blank" rel="noopener" class="contato__valor">@rocolivimports</a>
+            <a href="https://www.instagram.com/rocoliv/" target="_blank" rel="noopener" class="contato__valor">@rocoliv</a>
           </li>
           <li class="contato__item">
             <span class="contato__rotulo">Horário</span>
