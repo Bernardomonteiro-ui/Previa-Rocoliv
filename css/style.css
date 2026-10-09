@@ -1522,6 +1522,7 @@ a.contato__valor:hover { color: var(--laranja); }
 }
 .rodape__copy { color: var(--cinza-medio); font-size: 0.8rem; }
 .rodape__aviso { color: #666666; font-size: 0.72rem; margin-top: 10px; }
+.rodape__credito { color: #555555; font-size: 0.68rem; margin-top: 18px; }
 
 @media (min-width: 1024px) {
   .rodape { padding-bottom: 48px; }
